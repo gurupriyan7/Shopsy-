@@ -1,0 +1,20 @@
+<section>
+  <div class="container mt-4">
+          <div class="add-product-top">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="text-center add-product-headding">Edit Catagory</h2>
+        <form
+          action="/admin/edit-catagory?id={{data._id}}&data={{data.Catagory}}"
+          method="post"
+        >
+          <label for="">Edit Catagory</label>
+          <input type="text" name="Catagory" class="form-control" value="{{data.Catagory}}" />
+          <button type="submit" class="btn-success mt-4 product-add-submit">Submit</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

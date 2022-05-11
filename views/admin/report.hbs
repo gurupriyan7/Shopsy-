@@ -1,0 +1,218 @@
+{{!-- <h1 style='font-size:x-large'>DashBoard</h1> --}}
+{{!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script> --}}
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<style>
+           #graph-card {
+                    
+                     border-radius: 5px ;
+       box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;
+}
+    }
+
+</style>
+<div class="container-fluid mt-5">
+    
+    
+          <div class="text-center mb-2">
+                    <h3><strong>Sales Report</strong> <small> <strong>{{data.start}}--{{data.end}}</strong></small></h3>
+          </div>
+          <div class="text-left">
+        <div class="dropdown">
+  <a class="btn  dropdown-toggle" href="" style="border: 1px solid rgb(224, 176, 19); box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+    Select <i class="fa fa-caret-down" aria-hidden="true"></i>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="/admin/limit-report?limit=yearly"> Yearly</a>
+    <a class="dropdown-item" href="/admin/limit-report?limit=monthly">Monthly</a>
+    <a class="dropdown-item" href="/admin/limit-report?limit=weekly">Weekly</a>
+    
+  </div>
+</div>
+    </div>
+          <div class="row">
+                    <div class="col-md-12">
+                              <form action="/admin/date-report" method="post">
+                                        <div class="form-row">
+                                                  <div class="form-group col-md-4">
+                                                            <label for="start"><h6>From Date</h6></label>
+                                                            <input type="date" class="form-control" id="start"
+                                                                      name="startDate" style=" box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;border: 1px solid rgb(224, 176, 19);" required>
+                                                  </div>
+                                                  <div class="form-group col-md-4">
+                                                            <label for="end"><h6>To Date</h6></label>
+                                                            <input type="date" class="form-control" id="end"
+                                                                      name="endDate" style=" box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;border: 1px solid rgb(224, 176, 19);" required>
+                                                  </div>
+                                                  <div class="form-group col-md-4 mt-4">
+                                                            <input type="submit" value="Search"
+                                                                      class="btn btn-block  "
+                                                                      style="margin-top: 14px; background-color:rgb(224, 176, 19);color:white; box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;">
+                                                  </div>
+                                        </div>
+                              </form>
+                    </div>
+          </div>
+
+          <div class="row">
+
+                  
+                    
+          </div>
+</div>
+
+
+
+          
+
+
+          <div class="row ">
+                    <div class="col-md-8">
+                              <div id="graph-card" class="  mb-3 mt-3 ">
+                                        <div class="card-header">
+                                                  <i class="fa fa-shopping-cart f text-gray-300"></i>
+                                                  Recent Orders
+                                        </div>
+                                        <div class="card-body ">
+                                                  <div class="row">
+  <table  class=" " id="Table">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th scope="col">SL No</th>
+      <th scope="col">Date</th>
+ <th scope="col">User Name</th>
+ <th scope="col">Address</th>
+ <th scope="col">Payment</th>
+ <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each orders}}
+    <tr class="list-item">
+      <td scope="row">{{inc @index}}</td>
+      <td>{{this.date}}</td>
+      <td>{{this.deliveryDetails.name}}</td>
+      <td>
+          {{this.deliveryDetails.houseName}}<br>
+          {{this.deliveryDetails.city}}<br>
+          {{this.deliveryDetails.pinCode}}<br></td>
+     
+      <td >Rs :{{this.totalAmount}}<br>
+      <h6>{{this.paymentMethod}}</h6>
+          </td>
+      
+      <td>{{this.status}}</td>
+    </tr>
+    {{/each}}
+    
+   
+  </tbody>
+</table>
+                                                  </div>
+                                        </div>
+                              </div>
+
+
+                    </div>
+                    <div class="col-md-3">
+                         <div id="graph-card" class="  mb-3 mt-3 ">
+                                        <div class="card-header">
+                                                  <i class="fa fa-shopping-cart f text-gray-300"></i>
+                                                  Oder Summary
+                                        </div>
+                                        <div class="card-body ">
+                                                  <div class="row">
+                             <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="lni lni-investment"></i> Total Sales :</h6>
+                            <span class="text-secondary">Rs:{{data.totalSales}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="lni lni-shopping-basket"></i> Total Orders :</h6>
+                            <span class="text-secondary">{{data.totalOrders}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="lni lni-credit-cards"></i> Delivered Orders :</h6>
+                            <span class="text-secondary">{{ data.deliveredOrder }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="lni lni-warning"></i>  Pending Orders :</h6>
+                            <span class="text-secondary">{{data.faildOrders}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="lni lni-wallet"></i> COD :</h6>
+                            <span class="text-secondary">{{data.cod}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="lni lni-paypal"></i> Paypal  :</h6>
+                            <span class="text-secondary">{{data.paypal}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="lni lni-google-wallet"></i> Razorpay :</h6>
+                            <span class="text-secondary">{{data.razorpay}}</span>
+                        </li>
+                        
+                    </ul>
+                                                  </div>
+                                        </div>
+                         </div>
+                              
+                    </div>
+
+          </div>
+
+
+
+
+         <script>
+    $(document).ready(function() {
+    $('#Table').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+         </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

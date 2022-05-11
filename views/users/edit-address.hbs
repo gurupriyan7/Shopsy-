@@ -1,0 +1,110 @@
+<div class="container-fluid">
+  <div class="row">
+
+    
+      <!-- Main Content -->
+      <div class="container-fluid">
+        <div class="row main-content bg-success text-center" style="border-radius:1%!important;">
+          <div class="col-md-4 text-center company__info" style="border-radius:1%!important;">
+            <span class="company__logo"><h2><span
+                  class="fa fa-home fa-3x"
+                ></span></h2></span>
+            <h4 class="company_title">Edit Address</h4>
+          </div>
+          <div class="col-md-8 col-xs-12 col-sm-12 login_form" style="border-radius:1%!important;">
+            <div class="container-fluid">
+                     
+              <div class="row">
+                <h2>Edit Address</h2>
+              </div>
+
+              <div class="row">
+
+                <form
+                  control=""
+                  class="form-group"
+                  action="/edit-address"
+                  method="post"
+                  
+                >
+
+                 
+
+                  <div class="row text-left ">
+                            <h5 class="edit-add">Name</h5>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      class="form__input"
+                      value="{{address.name}}"
+                    />
+                  </div>
+                  <div class="row text-left">
+                    <h5 class="edit-add">houseName</h5>
+                    <input
+                      type="text"
+                      name="houseName"
+                      id="houseName"
+                      class="form__input"
+                      value="{{address.houseName}}"
+                    />
+                  </div>
+                  <div class="row text-left">
+                            <h5 class="edit-add">City</h5>
+                    <input
+                      type="text"
+                      name="city"
+                      id="city"
+                      class="form__input"
+                     value="{{address.city}}"
+                    />
+                  </div>
+                  <div class="row text-left">
+                            <h5 class="edit-add">PinCode</h5>
+                    <input
+                      type="text"
+                      name="pinCode"
+                      id="pinCode"
+                      class="form__input"
+                      value="{{address.pinCode}}"
+                    />
+                  </div>
+                  <div class="row text-left">
+                            <h5 class="edit-add">PhoneNumber</h5>
+                    <input
+                      type="text"
+                      name="phoneNumber"
+                      id="phoneNumber"
+                      class="form__input"
+                      value="{{address.phoneNumber}}"
+                    />
+                    <input type="text" name="addId" value="{{address._id}}" hidden>
+                  </div>
+                 
+                  <div class="row">
+
+                    <button type="submit" class="btn">Save Changes</button>
+                   
+                  </div>
+                  
+                </form>
+              </div>
+             
+             
+          </div>
+
+         
+        </div>
+      </div>
+      <!-- Footer -->
+
+    </body>
+  </div>
+</div>
+<style>
+          .edit-add{
+ margin-bottom: -20px;
+ margin-top: 28px;
+          }
+</style>

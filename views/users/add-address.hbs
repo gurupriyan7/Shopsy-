@@ -1,0 +1,144 @@
+<div class="container-fluid">
+  <div class="row">
+
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <div class="row main-content bg-success text-center" style="border-radius:1%!important;">
+        <div class="col-md-4 text-center company__info" style="border-radius:1%!important;">
+          <span class="company__logo">
+            <h2><span class="fa fa-home fa-3x"></span></h2>
+          </span>
+          <h4 class="company_title">Add Address</h4>
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-12 login_form" style="border-radius:1%!important;">
+          <div class="container-fluid">
+            <div class="row">
+              <h2>Add Address</h2>
+            </div>
+
+            <div class="row">
+
+              <form control="" class="form-group" action="/add-address" method="post" id="form"
+                onsubmit="validation1(event)">
+
+
+
+                <div class="row">
+                  <input type="text" name="name" id="name" class="form__input" placeholder="Name" />
+                  <span style="color:crimson;" id="nameErr"></span>
+                </div>
+                <div class="row">
+
+                  <input type="text" name="houseName" id="houseName" class="form__input" placeholder="House Name" />
+                  <span style="color:crimson;" id="houseNameErr"></span>
+                </div>
+                <div class="row">
+
+                  <input type="text" name="city" id="city" class="form__input" placeholder="City" />
+                  <span style="color:crimson;" id="cityErr"></span>
+                </div>
+                <div class="row">
+
+                  <input type="number" name="pinCode" id="pinCode" class="form__input" placeholder="PINCODE" />
+                  <span style="color:crimson;" id="pinCodeErr"></span>
+                </div>
+                <div class="row">
+
+                  <input type="number" name="phoneNumber" id="phoneNumber" class="form__input"
+                    placeholder="PhoneNumber" />
+                  <span style="color:crimson;" id="phoneNumberErr"></span>
+                </div>
+
+                <div class="row">
+
+                  <button type="submit" class="btn">Add Address</button>
+
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+      <!-- Footer -->
+
+      </body>
+    </div>
+  </div>
+  <script>
+
+    let name = document.getElementById('name')
+    let houseName = document.getElementById('houseName')
+    let city = document.getElementById('city')
+    let pinCode = document.getElementById('pinCode')
+    let phoneNumber = document.getElementById('phoneNumber')
+
+    let nameErr = document.getElementById('nameErr')
+    let houseNameErr = document.getElementById('houseNameErr')
+    let cityErr = document.getElementById('cityErr')
+    let pinCodeErr = document.getElementById('pinCodeErr')
+    let phoneNumberErr = document.getElementById('phoneNumberErr')
+
+    let nameMsg = []
+    let houseMsg = []
+    let cityMsg = []
+    let pinMsg = []
+    let phoneMsg = []
+
+
+    function validation1(e) {
+
+
+      if (name.value == null || name.value == "") {
+        nameMsg.push('please enter Name')
+      }
+      if (houseName.value == null || houseName.value == "") {
+        houseMsg.push('please enter HouseName')
+      }
+      if (city.value == null || city.value == "") {
+        cityMsg.push("Please enter city Name")
+      }
+      if (pinCode.value == null || pinCode.value == "") {
+        pinMsg.push('Please enter PinCode')
+      } else if (isNaN(pinCode.value) == true) {
+
+        pinMsg.push('Incorrect Format')
+      }
+      if (phoneNumber.value == null || phoneNumber.value == "") {
+        phoneMsg.push('please enter PhoneNumber')
+      } else if (phoneNumber.value.length < 10 || phoneNumber.value.length > 10) {
+        phoneMsg.push('Incorrect phoneNumber')
+      } else if (isNaN(phoneNumber.value) == true) {
+        phoneMsg.push('Please enter in Number Format')
+      }
+
+
+
+      if (nameMsg.length > 0) {
+        e.preventDefault()
+        nameErr.innerHTML = "";
+        nameErr.innerHTML = nameMsg.join('')
+      }
+
+      if (houseMsg.length > 0) {
+        e.preventDefault()
+        houseNameErr.innerHTML = houseMsg.join('')
+      }
+      if (cityMsg.length > 0) {
+        e.preventDefault()
+        cityErr.innerHTML = cityMsg.join('')
+      }
+      if (pinMsg.length > 0) {
+        e.preventDefault()
+        pinCodeErr.innerHTML = pinMsg.join('')
+      }
+      if (phoneMsg.length > 0) {
+        e.preventDefault()
+        phoneNumberErr.innerHTML = phoneMsg.join('')
+      }
+    }
+  </script>

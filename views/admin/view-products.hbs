@@ -1,0 +1,131 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+<style>
+    
+
+
+.list-wrapper {
+	padding: 15px;
+	overflow: hidden;
+}
+
+.list-item {
+	border: 1px solid #EEE;
+	background: #FFF;
+	margin-bottom: 10px;
+	padding: 10px;
+	box-shadow: 0px 0px 10px 0px #EEE;
+}
+
+.list-item h4 {
+	color: #FF7182;
+	font-size: 18px;
+	margin: 0 0 5px;	
+}
+
+.list-item p {
+	margin: 0;
+}
+
+.simple-pagination ul {
+	margin: 0 0 20px;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+
+.simple-pagination li {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.simple-pagination li a,
+.simple-pagination li span {
+	color: #666;
+	padding: 5px 10px;
+	text-decoration: none;
+	border: 1px solid #EEE;
+	background-color: #FFF;
+	box-shadow: 0px 0px 10px 0px #EEE;
+}
+
+.simple-pagination .current {
+	color: #FFF;
+	background-color: #FF7182;
+	border-color: #FF7182;
+}
+
+.simple-pagination .prev.current,
+.simple-pagination .next.current {
+	background: #e04e60;
+}
+</style>
+<section>
+  <div class="container">
+    <div class="container">
+      <div class="row mb-3 ">
+        <div class="col-md-12 d-flex">
+          <div class="col-md-6"></div>
+          <div class="col-md-3">
+            </div>
+
+          <div class="col-md-3 ">
+<a class="btn btn-dark w-100 " href="/admin/product-add">Add Product</a>
+          </div>
+        </div>
+{{!-- add-product-bttn --}}
+      </div>
+    </div>
+    <table class="table caption-top" id="DataTable">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th scope="col">SL No</th>
+      <th scope="col">Brand</th>
+      <th scope="col">Price</th>
+      <th scope="col">Catagory</th>
+      <th scope="col">Image</th>
+      <th scope="col">Option</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr  class="list-item">
+      <th scope="row">{{inc @index}}</th>
+      <td>{{this.Title}}</td>
+      <td>{{this.Price}}</td>
+      <td>{{this.CatagoryName}}</td>
+      <td><img src="/product-images/{{this._id}}.jpg" style="width: 50px;" alt=""></td>
+      <td>
+        <a class="btn btn-primary" onclick="editProduct(event)" brand="{{this.Title}}" name="{{this.Description}}"  href="/admin/edit-product?id={{this._id}}">Edit</a>
+          <a class="btn btn-danger" onclick="deleteProduct(event)" name="{{this.Description}}" brand="{{this.Title}}" href="/admin/delete-product?id={{this._id}}">Delete</a>
+      </td>
+    </tr>
+    {{/each}}
+   
+  </tbody>
+</table>
+<div id="pagination-container"></div>
+   </div>
+</section>
+<script>
+  // jQuery Plugin: http://flaviusmatis.github.io/simplePagination.js/
+
+var items = $(".list-item");
+    var numItems = items.length;
+    var perPage = 10;
+
+    items.slice(perPage).hide();
+
+    $('#pagination-container').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "&laquo;",
+        nextText: "&raquo;",
+        onPageClick: function (pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    });
+</script>

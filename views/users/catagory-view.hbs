@@ -1,0 +1,128 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+ <style>
+ 
+
+
+
+
+.simple-pagination li {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.simple-pagination li a,
+.simple-pagination li span {
+	color: #666;
+	padding: 5px 10px;
+	text-decoration: none;
+	border: 1px solid #EEE;
+	background-color: #FFF;
+	box-shadow: 0px 0px 10px 0px #EEE;
+}
+
+.simple-pagination .current {
+	color: #FFF;
+	background-color: #FF7182;
+	border-color: #FF7182;
+}
+
+.simple-pagination .prev.current,
+.simple-pagination .next.current {
+	background: #e04e60;
+}
+</style>
+<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+					
+				<div class="row user-product ">
+{{!-- 
+					<div class="col-md-12">
+						<div class="section-title text-center">
+							<h3 class="title">Related Products</h3>
+						</div>
+					</div> --}}
+
+<section>
+	{{#each products}}
+                                		<!-- product -->
+					<div class=" list-wrapper col-md-3 col-xs-6">
+						<div class=" list-item product">
+							<a href="/image-view?id={{this._id}}"><div class="product-img">
+								
+
+								{{!-- <a href="/image-view?id={{this._id}}"><img src="/product-images/{{this._id}}.jpg"  alt="" style="height: 294px;px"></a> --}}
+								<img src="/product-images/{{this._id}}.jpg"  alt="" style="height: 294px;px" >
+								<div class="product-label">
+									{{#if offerPer}}
+								<div class="product-label">
+									
+									<span class="sale">-{{this.offerPer}}%</span>
+								</div>
+								{{/if}}
+								</div>
+							</div></a>
+							<div class="product-body">
+								<h3 class="product-name"><a href="#">{{this.Title}}</a></h3>
+								<p class="product-discription">{{this.Description}}</p>
+								<p class="product-category">{{this.Category}}</p>
+								<h4 class="product-price">₹{{this.Price}}
+									{{#if actualPrice}}
+									<del class="product-old-price">₹{{this.actualPrice}}</del>
+									{{/if}}
+									</h4>
+								<div class="product-rating">
+								</div>
+								<div class="product-btns">
+								          {{#if ../user}}
+									{{#if wishList}}
+									<button  id="remove" onclick="removeWish('{{this._id}}')"class="add-to-wishlist"><i style="color:red;display:" class="fa fa-heart"></i><span class="tooltipp">remove</span></button>
+									{{else}}
+									<button  id="add" onclick="addToWish('{{this._id}}')" class="add-to-wishlist" style="display:;"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+									{{/if}}
+								          <button onclick="window.location.href='/image-view?id={{this._id}}'"  class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+									{{/if}}
+
+
+								</div>
+							</div>
+							<div class="add-to-cart">
+								<button  onclick="addToCart('{{this._id}}')" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+							</div>
+						</div>
+					</div>
+					<!-- /product -->
+{{/each}}
+</section>
+</div>
+			</div>
+			<div class="text-center">
+
+<div id="pagination-container"></div>
+			</div>
+			</div>
+
+			<script>
+  // jQuery Plugin: http://flaviusmatis.github.io/simplePagination.js/
+
+var items = $(".list-wrapper .list-item");
+    var numItems = items.length;
+    var perPage = 8;
+
+    items.slice(perPage).hide();
+
+    $('#pagination-container').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "&laquo;",
+        nextText: "&raquo;",
+        onPageClick: function (pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    });
+</script>

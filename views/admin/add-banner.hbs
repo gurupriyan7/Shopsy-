@@ -1,0 +1,113 @@
+<section>
+  <div class="container-fluid mt-4">
+    <div class="add-product-top">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="text-center add-product-headding">Add Banner 3</h2>
+          <form action="/admin/banner-add" method="post" enctype="multipart/form-data" id="form">
+            <label for=""></label>Banner Headding<br>
+            <input id="headding" type="text" class="form-control" name="headding" placeholder="Banner Headding">
+            <span style="color:crimson" id="headdingErr"></span>
+            <br>
+
+            <label for="">Sub Headding</label>
+            <input id="subHeadding" type="text" name="subHeadding" class="form-control" placeholder="Sub Headding" />
+            <span style="color:crimson" id="subHeaddingErr"></span><br>
+            <label for="">Banner Text</label>
+            <input type="text" id="text" name="text" class="form-control" placeholder="Banner Text" />
+            <span style="color:crimson" id="textErr"></span><br>
+            <label for="">Offer Category</label>
+            <select id="link" class="selectpicker product-add-catagory" style="width: 100%;height:35px" name="link"
+              id="">
+              <option value="">select a Category</option>
+              {{#each data}}
+              <option value="{{this._id}}">{{this.Catagory}}</option>
+              {{/each}}
+            </select>
+            <span style="color:crimson" id="linkErr"></span><br>
+            <br>
+
+            <label for="">Image</label>
+            <img alt="" style="height: 100px;width:250px;display:none;" id="imgView">
+
+            <input id="image" type="file" class="form-control" name="image" onchange="viewImage5(event)" />
+            <span style="color:crimson" id="imageErr"></span>
+            <button type="submit" class="btn-success mt-4 product-add-submit">Submit</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  let headding = document.getElementById('headding')
+  let subHeadding = document.getElementById('subHeadding')
+  let text = document.getElementById('text')
+  let link = document.getElementById('link')
+  let image = document.getElementById('image')
+
+  let headdingErr = document.getElementById('headdingErr')
+  let subHeaddingErr = document.getElementById('subHeaddingErr')
+  let textErr = document.getElementById('textErr')
+  let linkErr = document.getElementById('linkErr')
+  let imageErr = document.getElementById('imageErr')
+
+
+  let headdingMsg = []
+  let subHeaddingMsg = []
+  let textMsg = []
+  let linkMsg = []
+  let imageMsg = []
+  document.getElementById('form').addEventListener('submit', (e) => {
+
+    if (headding.value == "" || headding.value == null) {
+      headdingMsg.push('Banner Headding required')
+    }
+    if (subHeadding.value == '' || subHeadding.value == null) {
+      subHeaddingMsg.push('Banner SubHeadding required')
+    }
+    if (text.value == '' || text.value == null) {
+      textMsg.push('Text required')
+    }
+    if (link.value == null || link.value == "") {
+      linkMsg.push('select offer category')
+    }
+    if (image.value == "" || image.value == null) {
+      imageMsg.push('Choose a Image')
+    }
+
+
+
+
+    if (headdingMsg.length > 0) {
+      e.preventDefault()
+      headdingErr.innerHTML = headdingMsg.join('')
+    }
+    if (subHeaddingMsg.length > 0) {
+      e.preventDefault()
+      subHeaddingErr.innerHTML = subHeaddingMsg.join()
+    }
+    if (textMsg.length > 0) {
+      e.preventDefault()
+      textErr.innerHTML = textMsg.join('')
+    }
+    if (linkMsg.length > 0) {
+      e.preventDefault()
+      linkErr.innerHTML = linkMsg.join('')
+    }
+    if (imageMsg.length > 0) {
+      e.preventDefault()
+      imageErr.innerHTML = imageMsg.join('')
+    }
+
+  })
+
+
+  function viewImage5(event) {
+    document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    document.getElementById('imgView').style.display = 'block'
+  }
+
+
+</script>

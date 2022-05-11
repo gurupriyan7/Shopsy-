@@ -1,0 +1,185 @@
+<div class="container-fluid">
+          <div class="row">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+	<title>signup Page</title>
+</head>
+<body>
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info" >
+				<span class="company__logo"><h2><span class="fa fa-shopping-bag fa-3x"></span></h2></span>
+				<h4 style="padding-top: 4rem;" class=" company_title">SHOPSY</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>SIGN UP</h2>
+					</div>
+					<div class="row">
+						<form action="/signup" control="" class="form-group" method="post" id="Form">
+						{{#if EmlMobErr}}
+						<h6 style="color: crimson;">{{EmlMobErr}}</h6>
+						{{/if}}
+						
+							<div class="row">
+								<input type="text" name="Name" id="Name" class="form__input" placeholder="Name">
+								
+							</div>
+							<div class="text-left">
+								<span id="errName" style="color: crimson;"></span>
+							</div>
+
+
+							<div class="row">
+								<input type="text" name="Email" id="Email" class="form__input" placeholder="Email">
+							</div>
+							<div class="text-left">
+								<span id="errEmail" style="color: crimson;"></span>
+							</div>
+
+
+							<div class="row">
+			
+								<input type="password" name="Password" id="Password" class="form__input" placeholder="Password">
+							</div>
+							<div class="text-left">
+								<span id="errPassword" style="color: crimson;"></span>
+							</div>
+
+
+							<div class="row">
+			
+								<input type="password" name="Password1" id="Password1" class="form__input" placeholder="Re-enter Password">
+							</div>
+							<div class="text-left">
+								<span id="errPassword1" style="color: crimson;"></span>
+							</div>
+
+
+                                                                      <div class="row">
+								<input type="text" name="PhoneNumber" id="PhoneNumber" class="form__input" placeholder="Phone Number">
+								<input type="text" value="{{refer}}" name="referedBy"  class="form__input" placeholder=""hidden>
+							</div>
+							<div class="text-left">
+								<span id="errPhoneNumber" style="color: crimson;"></span>
+							</div>
+
+							
+							<div class="row">
+                                                                                <button type="submit" class="btn" id="btn">Register</button>
+							</div>
+							{{!-- <div class="row">
+								<p><a href="#">Login With OTP</a></p>
+							</div> --}}
+						</form>
+					</div>
+					<div class="row">
+						<p>Alredy have an account? <a href="/login">Login</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	
+</body>
+          </div>
+</div>
+<script>
+	let form=document.getElementById('Form')
+
+	let name=document.getElementById('Name')
+	let email=document.getElementById('Email')
+	let password=document.getElementById('Password')
+	let password1=document.getElementById('Password1')
+	let phoneNumber=document.getElementById('PhoneNumber')
+
+
+	let nameErr=document.getElementById('errName')
+	let emailErr=document.getElementById('errEmail')
+	let passwordErr=document.getElementById('errPassword')
+	let password1Err=document.getElementById('errPassword1')
+	let phoneNumberErr=document.getElementById('errPhoneNumber')
+
+	
+	form.addEventListener('submit',(e)=>{
+
+          let nameMessage=[]
+	let emailMessage=[]
+	let passwordMessage=[]
+	let password1Message=[]
+	let phoneNumberMessage=[]
+                     //name
+	           if(name.value==''||name.value==null){
+			 nameMessage.push('Enter the Name')
+		 }else if(isNaN(name.value)==false){
+			 nameMessage.push('Numbers are Not Allowed')
+		 }
+		 //email
+
+		if(email.value===''||email.value==null){
+                        emailMessage.push('Please enter Email') 
+                    }else
+                     if(email.value.indexOf('@')<=0){
+                         emailMessage.push('Invaild Email')
+                   }else if(email.value.charAt(email.value.length-4)!='.'){
+                       emailMessage.push('Email format Incorrect') 
+                   }
+	         //password
+
+	         if(password.value==null||password.value==''){
+
+		         passwordMessage.push('Enter Password')
+	         }else if(password.value.length<5){
+		         passwordMessage.push('Password length Must be 5')
+	         }
+	         //password1
+
+	         if(password1.value!=password.value){
+		         password1Message.push('Re-Entered Password not Match')
+	         }
+	         //phoneNumber
+	         
+	         if(phoneNumber.value==''||phoneNumber.value==null){
+		         phoneNumberMessage.push('Please Enter PhoneNumber')
+	         }else if(isNaN(phoneNumber.value)==true){
+		         phoneNumberMessage.push('Only Numbers are Allowed')
+	         }else if(phoneNumber.value.length !=10){
+		         phoneNumberMessage.push('PhoneNumber Must be 10 digits')
+	         }
+
+
+
+		//name
+		 if(nameMessage.length>0){
+			 e.preventDefault()
+			nameErr.innerHTML=nameMessage.join('')
+		 }
+		 //email
+		 if(emailMessage.length>0){
+			 e.preventDefault()
+			 emailErr.innerHTML=emailMessage.join('')
+		 }
+		 //password
+		 if(passwordMessage.length>0){
+			 e.preventDefault()
+			 passwordErr.innerHTML=passwordMessage.join('')
+		 }
+		 //password1
+		  if(password1Message.length>0){
+			  e.preventDefault()
+			  password1Err.innerHTML=password1Message.join('')
+		  }
+		  //phoneNumber
+		  if(phoneNumberMessage.length>0){
+			  e.preventDefault()
+			  phoneNumberErr.innerHTML=phoneNumberMessage.join('')
+		  }
+
+	})
+</script>

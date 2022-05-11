@@ -1,0 +1,30 @@
+ 
+<section>
+<div class="container-fluid">
+          <h2 class="text-center">Your Orders</h2>
+          <div class="row text-center">
+                    {{#each orders}}
+  <div class="col-sm-3"  style="background-color:aliceblue; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);margin-left:50px">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Your Order {{this.status }}</h5>
+        <p class="card-text">Date  : {{this.date}}</p>
+        <p class="card-text">Address : {{this.deliveryDetails.name}}<br>
+                                {{this.deliveryDetails.houseName}}<br>
+                                {{this.deliveryDetails.city}}<br>
+                                {{this.deliveryDetails.pinCode}}</p>
+        <p class="card-text">Payment :₹{{this.totalAmount}}<br>
+                  {{this.paymentMethod}}
+        </p>
+        <p class="card-text">Date {{this.date}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  
+ 
+  
+</div>
+</div>
+</section>

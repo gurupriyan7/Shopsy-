@@ -1,0 +1,102 @@
+<section>
+  <div class="container-fluid mt-4">
+    <div class="add-product-top">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="text-center add-product-headding">Add Coupon </h2>
+          <form action="/admin/coupon-add" method="post" enctype="multipart/form-data" id="form">
+            <label for=""></label>Coupon Code<br>
+            <input name="couponCode" id="coupon" type="text" class="form-control" placeholder="Coupon Code">
+            <span id="couponErr" style="color:crimson"></span>
+            <br>
+
+            <label for="">Starting Date</label>
+            <input id="startDate" type="date" name="startDate" class="form-control" />
+            <span id="startDateErr" style="color:crimson"></span><br>
+            <label for="">Expiry Date</label>
+            <input id="endDate" type="date" name="endDate" class="form-control" />
+            <span id="endDateErr" style="color:crimson"></span><br>
+
+
+
+            <label for="">Offer Percentage</label>
+            <input id="offer" type="text" name="offerPer" class="form-control" placeholder="Enter the offer Percentage" />
+            <span id="offerErr" style="color:crimson"></span>
+
+
+
+
+
+
+
+            <button type="submit" class="btn-success mt-4 product-add-submit">Submit</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{!-- validation --}}
+<script>
+
+  let form = document.getElementById('form')
+  let coupon = document.getElementById('coupon')
+  let start = document.getElementById('startDate')
+  let end = document.getElementById('endDate')
+  let offer = document.getElementById('offer')
+
+  let couponErr = document.getElementById('couponErr')
+  let startErr = document.getElementById('startDateErr')
+  let endErr = document.getElementById('endDateErr')
+  let offerErr = document.getElementById('offerErr')
+
+  let couponMsg = []
+  let startMsg = []
+  let endMsg = []
+  let offerMsg = []
+
+  form.addEventListener('submit', (e) => {
+
+
+    if (coupon.value == "" || coupon.value == null) {
+
+      couponMsg.push('please enter coupon code ')
+    }
+    if (start.value == null || start.value == "") {
+      startMsg.push('Please Enter Date')
+    }
+    if (end.value == null || end.value == "") {
+      endMsg.push('Please Enter Date')
+    }
+    if (offer.value == null || offer.value == "") {
+      offerMsg.push('Please enter Offer Percentage')
+    } else if (isNaN(offer.value) == true) {
+      offerMsg.push('percentage Must be in Number format')
+    } else if (offer.value > 100) {
+      offerMsg.push('above 100% not allowed')
+    }
+
+
+
+
+
+    if (couponMsg.length > 0) {
+      e.preventDefault()
+      couponErr.innerHTML = couponMsg.join('')
+    }
+    if (startMsg.length > 0) {
+      e.preventDefault()
+      startErr.innerHTML = startMsg.join('')
+    }
+    if (endMsg.length > 0) {
+      e.preventDefault()
+      endErr.innerHTML = endMsg.join("")
+    }
+    if (offerMsg.length > 0) {
+      offerErr.innerHTML = offerMsg.join('')
+    }
+
+  })
+</script>
+{{!-- validation --}}

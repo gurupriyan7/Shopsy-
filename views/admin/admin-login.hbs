@@ -1,0 +1,104 @@
+<div class="container-fluid">
+          <div class="row">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+	<title>Registr Page</title>
+</head>
+<body>
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-shopping-bag fa-3x"></span></h2></span>
+				<h4 class="company_title">SHOPSY</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>Welcome Back Admin!</h2>
+					</div>
+					<div class="row">
+						{{#if invalid }}
+						<h5 style="color: rgb(151, 16, 16);">{{invalid }}</h5>
+						{{/if}}
+						<form control="" class="form-group" action="/admin/login" method="post" id="Form">
+							<div class="row">
+								<input type="text" name="Email" id="Email" class="form__input" placeholder="Email or Username">
+								<span id="errorEmail" style="color: crimson;"></span>
+							</div>
+							<div class="row">
+			
+								<input type="password" name="Password" id="Password" class="form__input" placeholder="Password">
+								<span id="errorPassword" style="color: crimson;"></span>
+							</div>
+							{{!-- <div class="row">
+								<input type="checkbox" name="remember_me" id="remember_me" class="">
+								<label for="remember_me">Remember Me!</label>
+							</div> --}}
+							<div class="row">
+				
+                                                                                <button type="submit" class="btn">Login</button>
+                                                                                {{!-- <p class="btn">Register</p> --}}
+							</div>
+							{{!-- <div class="row">
+								<p><a href="#">Login With OTP</a></p>
+							</div> --}}
+						</form>
+					</div>
+					
+				</div>
+			</div>
+
+
+			{{!-- validation --}}
+			<script>
+      
+        const email=document.getElementById("Email");
+        const password=document.getElementById("Password");
+        const form=document.getElementById("Form");
+        const error1=document.getElementById("errorEmail");
+        const error2=document.getElementById("errorPassword")
+ 
+        form.addEventListener('submit',(e)=>{
+          let message1=[]
+          let message2=[]
+      
+          if(email.value===''||email.value==null){
+            message1.push('Please enter username')
+        }else if(email.value.indexOf('@')<=0){
+          message1.push('Invaild Email')
+        }else if(email.value.charAt(email.value.length-4)!='.'){
+          message1.push('Email format Incorrect')
+
+        }
+        
+          if(password.value===''||password.value==null){
+            message2.push('Please enter password')
+          }
+           else if(password.value.length<4){
+            message2.push('password must be atleast 3 character')
+          }
+          if(message1.length>0){
+           e.preventDefault();
+           error1.innerText=message1.join('  ')
+          }
+          if(message2.length>0){
+            e.preventDefault()
+            error2.innerText=message2.join('  ')
+          }
+         
+         
+        })
+       
+      </script>
+			{{!-- validation --}}
+		</div>
+	</div>
+	<!-- Footer -->
+	
+</body>
+          </div>
+</div>

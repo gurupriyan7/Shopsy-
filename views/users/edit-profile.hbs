@@ -1,0 +1,30 @@
+<div class="form-box mt-5">
+                        <div class="form-tab">
+                                      <h2 class="text-centre">Edit Profile</h2>
+                            <div class="tab-content" id="tab-content-5">
+                             
+         <form id="Form" action="/edit-profile" method="post"> 
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="Name" placeholder="Enter name" id="Name"  value="{{user.Name}}" >
+                       <span id="errorName" style="color:red;"></span>
+                </div>
+                 <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="Email" placeholder="Enter email" id="Email" value="{{user.Email}}">
+                    <span id="errorEmail" style="color:red;"></span>
+                </div>
+                  <div class="form-group">
+                    <label>Phonenumber</label>
+                    <input type="tel" class="form-control" name="Phonenumber" placeholder="Enter Phone Number" id="Phonenumber" value="{{user.Phonenumber}}">          
+                       <span id="errorPhonenumber" style="color:red;"></span>
+                </div>
+                </div>     
+                  
+                    <button type="submit" class="btn btn-primary float-rignt">Submit</button>
+                
+            </form>
+                            
+                                </div><!-- .End .tab-pane -->
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .form-ta

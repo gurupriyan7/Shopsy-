@@ -1,0 +1,348 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+ <style>
+ .carousel-fade {
+    .carousel-inner {
+        .item {
+            transition-property: opacity;
+        }
+        
+        .item,
+        .active.left,
+        .active.right {
+            opacity: 0;
+        }
+
+        .active,
+        .next.left,
+        .prev.right {
+            opacity: 1;
+        }
+
+        .next,
+        .prev,
+        .active.left,
+        .active.right {
+            left: 0;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    .carousel-control {
+        z-index: 2;
+    }
+}
+
+
+
+html, 
+body, 
+.carousel, 
+.carousel-inner, 
+.carousel-inner .item {
+    height: 100%;
+}
+
+.item:nth-child(1) {
+    background:;
+    border-radius: 20px;
+}
+
+.item:nth-child(2) {
+    background:;
+      border-radius: 20px;
+}
+
+.item:nth-child(3) {
+    background:;
+      border-radius: 20px;
+}
+
+
+
+
+.simple-pagination li {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.simple-pagination li a,
+.simple-pagination li span {
+	color: #666;
+	padding: 5px 10px;
+	text-decoration: none;
+	border: 1px solid #EEE;
+	background-color: #FFF;
+	box-shadow: 0px 0px 10px 0px #EEE;
+}
+
+.simple-pagination .current {
+	color: #FFF;
+	background-color: #FF7182;
+	border-color: #FF7182;
+}
+
+.simple-pagination .prev.current,
+.simple-pagination .next.current {
+	background: #e04e60;
+}
+.banner1-heading{
+margin-top: 76px;
+    font-style: italic;
+    font-family: serif;
+    font-size: 44px;
+    margin-left: 169px;
+}
+.bnr1-sub1{
+	font-size: 22px;
+    font-style: revert;
+    font-family: ui-monospace;
+    /* text-align: center; */
+    margin-left: 165px;
+}
+.bnr1-sub2{
+	    font-size: 24px;
+    font-family: fantasy;
+    margin-left: 174px;
+}
+.bnr1-btn{
+	width: 174px;
+    margin-left: 183px;
+}
+.banner2-heading{
+margin-top: 76px;
+    font-style: italic;
+    font-family: serif;
+    font-size: 44px;
+    margin-left: 81px;
+}
+.bnr2-sub1{
+	font-size: 22px;
+    font-style: revert;
+    font-family: ui-monospace;
+    /* text-align: center; */
+    margin-left: 152px;
+}
+.bnr2-sub2{
+	    font-size: 24px;
+    font-family: fantasy;
+    margin-left: 110px;
+}
+.bnr2-btn{
+	width: 174px;
+    margin-left: 140px;
+}
+.useC{
+	margin-left: 152px;
+    font-family: inherit;
+}
+
+
+</style>
+	
+
+{{!-- <div class="container-fluid">
+	<div class="row">
+		
+		<div id="hot-deal" class="section" style="background-image:  url('http://127.0.0.1:5500/099%20electro-master/img/hotdeal.png');width:100%">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="hot-deal">
+							<ul class="hot-deal-countdown">
+								<li>
+									<div>
+										<h3>02</h3>
+										<span>Days</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>10</h3>
+										<span>Hours</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>34</h3>
+										<span>Mins</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>60</h3>
+										<span>Secs</span>
+									</div>
+								</li>
+							</ul>
+							<h2 class="text-uppercase">hot deal this week</h2>
+							<p>New Collection Up to 50% OFF</p>
+							<a class="primary-btn cta-btn" href="#">Shop now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		
+		
+	</div>
+</div> --}}
+<div class="container-fluid ">
+<div style="height: 450px;">
+<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+        <li data-target="#carousel" data-slide-to="3"></li>
+    </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+       <div class="active item" >
+	       <div class="row">
+	        <div class="col-md-4">
+		        <h1 class="banner2-heading">{{banner.headding}}</h1><br>
+			<p class="bnr2-sub1">{{banner.subHeadding}}</p><br>
+			<p class="bnr2-sub2">{{banner.text}}</p><br>
+			<p class="useC">Use the coupon code</p>
+			<p class="bnr2-sub1" style="color: red;">{{couponCod.couponCode}}</p><br>
+			<a class="btn bnr2-btn"href="/catagory-manegment?cat={{banner.link}}">Shop</a>
+	        </div>
+	        <div class="col-md-8">
+
+	          <img style="width:100%;" src="/banner-images/{{banner._id}}.jpg" alt="">
+	        </div>
+	        </div>
+        </div>
+       {{#each Banners}}
+        <div class=" item" >
+	        <div class="row">
+	        <div class="col-md-4">
+		        <h1 class="banner2-heading">{{this.headding}}</h1><br>
+			<p class="bnr2-sub1">{{this.subHeadding}}</p><br>
+			<p class="bnr2-sub2">{{this.text}}</p><br><br>
+			
+
+			<a class="btn bnr2-btn"href="/catagory-manegment?cat={{this.link}}">Shop</a>
+	        </div>
+	        <div class="col-md-8">
+
+	          <img style="width:100%" src="/banner-images/{{this._id}}.jpg" alt="">
+	        </div>
+	        </div>
+        </div>
+        {{/each}}
+        
+        
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#carousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#carousel" data-slide="next">&rsaquo;</a>
+</div>
+</div>
+</div>
+
+
+<div class="section">
+
+			<!-- container -->
+			<div class="  container" style="">
+				<!-- row -->
+					
+				<div class=" row user-product ">
+
+
+<section>
+	
+	{{#each products}}
+                                		<!-- product -->
+					<div class="list-wrapper col-md-3 col-xs-6">
+						<div class="list-item product">
+							<a href="/image-view?id={{this._id}}">
+							<div class="product-img">
+								
+
+								{{!-- <a href="/image-view?id={{this._id}}"><img src="/product-images/{{this._id}}.jpg"  alt="" style="height: 294px;px"></a> --}}
+								<img src="/product-images/{{this._id}}.jpg"  alt="" style="height: 294px;px" >
+								{{#if offerPer}}
+								<div class="product-label">
+									
+									<span class="sale">-{{this.offerPer}}%</span>
+								</div>
+								{{/if}}
+							</div>
+							</a>
+							<div class="product-body">
+								<h3 class="product-name"><a href="#">{{this.Title}}</a></h3>
+								<p class="product-discription">{{this.Description}}</p>
+								<h4 class="product-category ">{{this.CatagoryName}}</h4>
+								
+								<h4 class="product-price">₹{{this.Price}}
+									{{#if actualPrice}}
+									<del class="product-old-price">₹{{this.actualPrice}}</del>
+									{{/if}}
+									</h4>
+								
+								<div class="product-rating">
+								</div>
+								<div class="product-btns">
+									{{#if ../user}}
+									{{#if wishList}}
+
+									<button  id="remove" onclick="removeWish('{{this._id}}')" class="add-to-wishlist"><i style="color:red;display:" class="fa fa-heart"></i><span class="tooltipp">remove</span></button>
+
+									{{else}}
+									<button  id="add" onclick="addToWish('{{this._id}}')" class="add-to-wishlist" style="display:;"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+									{{/if}}
+									<button onclick="window.location.href='/image-view?id={{this._id}}'"  class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+									{{/if}}
+									
+								</div>
+							</div>
+							<div class="add-to-cart">
+								{{!-- <a href="/added-to-cart?id={{this._id}}"> --}}
+								<button onclick="addToCart('{{this._id}}')" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								{{!-- </a> --}}
+							</div>
+						</div>
+					</div>
+					<!-- /product -->
+{{/each}}
+</section>
+
+</div>
+<div class="text-center">
+
+<div id="pagination-container"></div>
+</div>
+			</div>
+			</div>
+			
+<script>
+  // jQuery Plugin: http://flaviusmatis.github.io/simplePagination.js/
+  
+
+var items = $(".list-wrapper .list-item");
+    var numItems = items.length;
+    var perPage = 8;
+
+    items.slice(perPage).hide();
+
+    $('#pagination-container').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "&laquo;",
+        nextText: "&raquo;",
+        onPageClick: function (pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    });
+    $('.carousel').carousel();
+</script>
+			

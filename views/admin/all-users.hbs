@@ -1,0 +1,147 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+<style>
+  <style>body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    background: #f4f4f4;
+  }
+
+  .list-wrapper {
+    padding: 15px;
+    overflow: hidden;
+  }
+
+  .list-item {
+    border: 1px solid #EEE;
+    background: #FFF;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 0px #EEE;
+  }
+
+  .list-item h4 {
+    color: #FF7182;
+    font-size: 18px;
+    margin: 0 0 5px;
+  }
+
+  .list-item p {
+    margin: 0;
+  }
+
+  .simple-pagination ul {
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+
+  .simple-pagination li {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .simple-pagination li a,
+  .simple-pagination li span {
+    color: #666;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid #EEE;
+    background-color: #FFF;
+    box-shadow: 0px 0px 10px 0px #EEE;
+  }
+
+  .simple-pagination .current {
+    color: #FFF;
+    background-color: #FF7182;
+    border-color: #FF7182;
+  }
+
+  .simple-pagination .prev.current,
+  .simple-pagination .next.current {
+    background: #e04e60;
+  }
+</style>
+<section>
+
+  <div class="container">
+    <div class="container">
+      <div class="row mb-3 ">
+
+        <div class="col-md-12 d-flex">
+          <div class="col-md-6"></div>
+          <div class="col-md-3">
+          </div>
+
+          <div class="col-md-3 ">
+            <a class="btn btn-dark w-100" href="/admin/user-add">Add User</a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <table class="table caption-top" id="DataTable">
+      <caption></caption>
+      <thead>
+        <tr>
+          <th scope="col">SL No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Status</th>
+          <th scope="col">Option</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each Users}}
+        <tr class="list-item">
+          <td scope="row">{{inc @index}}</td>
+          <td>{{this.Name}}</td>
+          <td>{{this.Email}}</td>
+          <td>{{this.PhoneNumber}}</td>
+          {{#if Status}}
+          <td style="color: rgb(91, 186, 91);">Active</td>
+          {{else}}
+          <td style="color:crimson">Blocked</td>
+          {{/if}}
+          <td>
+            {{#if this.Status}}
+            <a class="btn btn-danger" onclick=" userBlock(event)" name="{{this.Name}}"
+              href="/admin/block-User?id={{this._id}}&name={{this.Name}}">Block</a>
+            {{else}}
+            <a class="btn btn-success" onclick=" userUnblock(event)" name="{{this.Name}}"
+              href="/admin/block-User?id={{this._id}}">Unblock</a>
+            {{/if}}
+          </td>
+        </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+    <div id="pagination-container"></div>
+  </div>
+</section>
+<script>
+  // jQuery Plugin: http://flaviusmatis.github.io/simplePagination.js/
+
+  var items = $(" .list-item");
+  var numItems = items.length;
+  var perPage = 10;
+
+  items.slice(perPage).hide();
+
+  $('#pagination-container').pagination({
+    items: numItems,
+    itemsOnPage: perPage,
+    prevText: "&laquo;",
+    nextText: "&raquo;",
+    onPageClick: function (pageNumber) {
+      var showFrom = perPage * (pageNumber - 1);
+      var showTo = showFrom + perPage;
+      items.hide().slice(showFrom, showTo).show();
+    }
+  });
+</script>

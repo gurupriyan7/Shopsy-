@@ -1,0 +1,139 @@
+
+
+
+<section>
+    <div class="container- mt-4">
+        <div class="row">
+
+            <div class="col-md-6">
+            <h2 class="text-center">Add User</h2>
+            <form action="/admin/user-add" method="post" enctype="multipart/form-data" id="Form" >
+	  {{#if EmlMobErr}}
+	  <h5 style="color: crimson;">{{EmlMobErr}}</h5>
+	  {{/if}}
+	 
+               <label for="">Name</label>
+               <input type="text" name="Name" class="form-control" id="Name" placeholder="Enter the name">
+               <span id="errName" style="color: crimson;"></span><br>
+
+               <label for="">Email</label>
+               <input type="text" name="Email" class="form-control" id="Email" placeholder="Enter the Email">
+               <span id="errEmail" style="color: crimson;"></span><br>
+
+                <label for="">Phone Number</label>
+               <input type="text" name="PhoneNumber" class="form-control" id="PhoneNumber" placeholder="Enter the PhoneNumber">
+               <span id="errPhoneNumber" style="color: crimson;"></span><br>
+               
+
+                <label for="">Password</label>
+                <input type="password" class="form-control" name="Password" placeholder="Enter password" id="Password" />
+                <span id="errPassword" style="color: crimson;"></span><br>
+
+                <label for="">Re-enter Password</label>
+                <input type="password" class="form-control" name="Password1" placeholder="Re-Enter password" id="Password1" />
+                <span id="errPassword1" style="color: crimson;"></span><br><br>
+
+          
+                   <button class="btn btn2" type="submit">Add User</button>  
+	          
+
+            </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+	let form=document.getElementById('Form')
+
+	let name=document.getElementById('Name')
+	let email=document.getElementById('Email')
+	let password=document.getElementById('Password')
+	let password1=document.getElementById('Password1')
+	let phoneNumber=document.getElementById('PhoneNumber')
+
+
+	let nameErr=document.getElementById('errName')
+	let emailErr=document.getElementById('errEmail')
+	let passwordErr=document.getElementById('errPassword')
+	let password1Err=document.getElementById('errPassword1')
+	let phoneNumberErr=document.getElementById('errPhoneNumber')
+
+	
+	form.addEventListener('submit',(e)=>{
+
+          let nameMessage=[]
+	let emailMessage=[]
+	let passwordMessage=[]
+	let password1Message=[]
+	let phoneNumberMessage=[]
+//name
+	           if(name.value==''||name.value==null){
+			 nameMessage.push('Enter the Name')
+		 }else if(isNaN(name.value)==false){
+			 nameMessage.push('Numbers are Not Allowed')
+		 }
+		 //email
+
+		if(email.value===''||email.value==null){
+                        emailMessage.push('Please enter Email') 
+                    }else
+                     if(email.value.indexOf('@')<=0){
+                         emailMessage.push('Invaild Email')
+                   }else if(email.value.charAt(email.value.length-4)!='.'){
+                       emailMessage.push('Email format Incorrect') 
+                   }
+	         //password
+
+	         if(password.value==null||password.value==''){
+
+		         passwordMessage.push('Enter Password')
+	         }else if(password.value.length<5){
+		         passwordMessage.push('Password length Must be 5')
+	         }
+	         //password1
+
+	         if(password1.value!=password.value){
+		         password1Message.push('Re-Entered Password not Match')
+	         }
+	         //phoneNumber
+	         
+	         if(phoneNumber.value==''||phoneNumber.value==null){
+		         phoneNumberMessage.push('Please Enter PhoneNumber')
+	         }else if(isNaN(phoneNumber.value)==true){
+		         phoneNumberMessage.push('Only Numbers are Allowed')
+	         }else if(phoneNumber.value.length !=10){
+		         phoneNumberMessage.push('PhoneNumber Must be 10 digits')
+	         }
+
+
+
+		//name
+		 if(nameMessage.length>0){
+			 e.preventDefault()
+			nameErr.innerHTML=nameMessage.join('')
+		 }
+		 //email
+		 if(emailMessage.length>0){
+			 e.preventDefault()
+			 emailErr.innerHTML=emailMessage.join('')
+		 }
+		 //password
+		 if(passwordMessage.length>0){
+			 e.preventDefault()
+			 passwordErr.innerHTML=passwordMessage.join('')
+		 }
+		 //password1
+		  if(password1Message.length>0){
+			  e.preventDefault()
+			  password1Err.innerHTML=password1Message.join('')
+		  }
+		  //phoneNumber
+		  if(phoneNumberMessage.length>0){
+			  e.preventDefault()
+			  phoneNumberErr.innerHTML=phoneNumberMessage.join('')
+		  }
+
+	})
+</script>

@@ -1,0 +1,127 @@
+
+
+
+		<div class="container">
+			<div class="row">
+				<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Product main img -->
+					<div class="col-md-5 col-md-push-2">
+						<div id="product-main-img" >
+							<div class="product-preview" style="width: 300px;height:500px">
+								<img src="/product-images/{{product._id}}.jpg" alt="">
+							</div>
+
+							<div class="product-preview" style="width: 300px;height:500px">
+								<img src="/product-images/{{product._id}}a.jpg" alt="">
+							</div>
+
+							<div class="product-preview" style="width: 300px;height:500px">
+								<img src="/product-images/{{product._id}}b.jpg" alt="">
+							</div>
+
+							<div class="product-preview" style="width: 300px;height:500px">
+								<img src="/product-images/{{product._id}}c.jpg" alt="">
+							</div>
+						</div>
+					</div>
+					<!-- /Product main img -->
+
+					<!-- Product thumb imgs -->
+					<div class="col-md-2  col-md-pull-5">
+						<div id="product-imgs" >
+							<div class="product-preview">
+								<img src="/product-images/{{product._id}}.jpg" alt="">
+							</div>
+
+							<div class="product-preview">
+								<img src="/product-images/{{product._id}}a.jpg" alt="">
+							</div>
+
+							<div class="product-preview">
+								<img src="/product-images/{{product._id}}b.jpg" alt="">
+							</div>
+
+							<div class="product-preview">
+								<img src="/product-images/{{product._id}}c.jpg" alt="">
+							</div>
+						</div>
+					</div>
+					<!-- /Product thumb imgs -->
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name">{{product.Title}}</h2>
+							<div>
+								
+								{{!-- <a class="review-link" href="#">10 Review(s) | Add your review</a> --}}
+							</div>
+							<div>
+								<h4 class="product-price">₹{{product.Price}}
+									{{#if product.actualPrice}}
+									<del class="product-old-price">₹{{product.actualPrice}}</del>
+									{{/if}}
+									</h4>
+								
+							</div>product
+								<p>{{product.Description}}</p>
+							{{!-- <div class="product-options">
+								<label>
+									Size
+									<select class="input-select">
+										<option value="0">X</option>
+									</select>
+								</label>
+								<label>
+									Color
+									<select class="input-select">
+										<option value="0">Red</option>
+									</select>
+								</label>
+							</div> --}}
+
+							<div class="add-to-cart">
+								{{!--  --}}
+								<button  onclick="addToCart('{{product._id}}')" class=" add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+							</div>
+
+							<ul class="product-btns">
+								{{#if user}}
+								{{#if product.wishList}}
+								<li><a onclick="removeWish('{{product._id}}')" class="add-to-wishlist" ><i class="fa fa-heart"></i> Remove from wishlist</a></li>
+
+								{{else}}
+								<li><a onclick="addToWish('{{product._id}}')" class="add-to-wishlist" ><i class="fa fa-heart"></i> add to wishlist</a></li>
+
+								{{/if}}
+								{{/if}}
+							</ul>
+
+							<ul class="product-links">
+								<li>Category:</li>
+								<li><a href="/catagory-manegment?cat={{product.Catagory}}">{{product.CatagoryName}}</a></li>
+								
+							</ul>
+
+							
+
+						</div>
+					</div>
+					<!-- /Product details -->
+
+					<!-- Product tab -->
+					
+					<!-- /product tab -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+			</div>
+		</div>

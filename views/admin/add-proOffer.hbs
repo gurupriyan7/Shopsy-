@@ -1,0 +1,107 @@
+<section>
+  <div class="container-fluid mt-4">
+    <div class="add-product-top">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="text-center add-product-headding">Add Product Offer</h2>
+          <form action="/admin/proOffers-add" method="post" enctype="multipart/form-data" id="form">
+            <label for="">Products</label><br>
+            <select class="selectpicker product-add-catagory" style="width: 100%;height:35px" name="product" id="product">
+              <option value="">select a Product</option>
+              {{#each products}}
+              <option value="{{this.Description}}">{{this.Description}}</option>
+              {{/each}}
+            </select>
+            <span style="color:crimson" id="productErr"></span>
+            <br><br>
+
+            <label for="">Starting Date</label>
+            <input id="startDate" type="date" name="startDate" class="form-control" />
+            <span style="color:crimson" id="startDateErr"></span><br>
+            <label for="">Expiry Date</label>
+            <input id="endDate" type="date" name="endDate" class="form-control" />
+            <span style="color:crimson" id="endDateErr"></span><br>
+
+
+
+            <label for="">Offer Percentage</label>
+            <input id="offer" type="text" name="offerPer" class="form-control" placeholder="Enter the offer Percentage" />
+            <span style="color:crimson" id="offerErr"></span>
+
+
+
+
+
+
+
+            <button type="submit" class="btn-success mt-4 product-add-submit">Submit</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{!-- validation --}}
+<script>
+
+  let form = document.getElementById('form')
+  let product = document.getElementById('product')
+  let start = document.getElementById('startDate')
+  let end = document.getElementById('endDate')
+  let offer = document.getElementById('offer')
+
+  let productErr = document.getElementById('productErr')
+  let startErr = document.getElementById('startDateErr')
+  let endErr = document.getElementById('endDateErr')
+  let offerErr = document.getElementById('offerErr')
+
+  let productMsg = []
+  let startMsg = []
+  let endMsg = []
+  let offerMsg = []
+
+  form.addEventListener('submit', (e) => {
+
+
+    if (product.value == "" || product.value == null) {
+
+      productMsg.push('please select a Procuct')
+    }
+    if (start.value == null || start.value == "") {
+      startMsg.push('Please Enter Date')
+    }
+    if (end.value == null || end.value == "") {
+      endMsg.push('Please Enter Date')
+    }
+    if (offer.value == null || offer.value == "") {
+      offerMsg.push('Please enter Offer Percentage')
+    } else if (isNaN(offer.value) == true) {
+      offerMsg.push('percentage Must be in Number format')
+    } else if (offer.value > 100) {
+      offerMsg.push('above 100% not allowed')
+    }
+
+
+
+
+
+    if (productMsg.length > 0) {
+      e.preventDefault()
+    productErr.innerHTML = productMsg.join('')
+    }
+    if (startMsg.length > 0) {
+      e.preventDefault()
+      startErr.innerHTML = startMsg.join('')
+    }
+    if (endMsg.length > 0) {
+      e.preventDefault()
+      endErr.innerHTML = endMsg.join("")
+    }
+    if (offerMsg.length > 0) {
+      offerErr.innerHTML = offerMsg.join('')
+    }
+
+  })
+</script>
+{{!-- validation --}}

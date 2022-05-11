@@ -1,0 +1,138 @@
+
+<style>
+    .buttn{
+        color:black;
+        border-radius: 7px;
+        border-width: 1px;
+        background-color: transparent;
+        font-size: 15px
+    }
+    .buttn:hover{
+        color: white;
+        background-color: crimson;
+    }
+    .buttn1{
+        color:black;
+        border: transparent!important;
+        background-color: transparent!important;
+        font-size: 20px;
+        font-weight: 15px;
+    }
+    .buttn1:hover{
+        color: red;
+    }
+</style>
+<section class="" style="background-color:">
+          <div class="container ">
+              <div class="row ">
+<div class="col-md-8 rowm">
+    <div class="row col-md-12 rowm" style="background-color:white;border-radius:9px">
+               
+        <div class=" summarya" style="background-color:white;">
+            <div class="titlea">
+                <div class="row rowa">
+                    <div class="col">
+                        <h4 class="title" style="color: red;"> Shopping Cart</h4>
+                    </div>
+                </div>
+            </div>
+           <div class="row">
+           <table class="table caption-top" id="DataTable">
+  <caption></caption>
+  <thead>
+     
+    <tr>
+      
+      <th scope="col">Product Details</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Option</th>
+    </tr>
+  </thead>
+  <tbody>
+   {{!-- product --}}
+   {{#each products}}
+    <tr>
+       
+      <th scope="row">
+      <img src="/product-images/{{this.product._id}}.jpg" style="width: 50px;" alt="">     
+      <p class="product-name">{{this.product.Description}}</p>
+     <p class="catagory-name" >Category:{{this.product.CatagoryName}}</p>
+     </th>
+      <td>₹{{this.product.Price}}</td>
+     
+      <td>
+          <button onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)" class="cart-item-count buttn">-</button>
+          <span id="{{this.product._id}}">{{this.quantity}}</span>
+          <button onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)" class="cart-item-count ml-3 buttn">+</button>
+          
+                {{!-- <a class="icon" href="#">-</a><a href="#" class="border">1</a><a class="icon" href="#">+</a> --}}
+     </td>
+      {{!-- <td><a class="remove" href="">&#10005;</a></td> --}}
+      <td><button onclick="removeProduct('{{this._id}}','{{this.product._id}}')" class=" buttn1">&#10005;</button></td>
+      
+    </tr>
+    {{/each}}
+   {{!-- product --}}
+  
+
+  </tbody>
+</table>
+</div>
+            
+            
+        </div>
+        
+    </div>
+    
+</div>
+ <div class="col-md-4 summarya ">
+            <div class="">
+                <h4>Details</h4>
+            </div>
+            <hr >
+            <div class="">
+            
+        
+
+           
+          
+
+            <div class="">
+            <div class="rowa ">
+                <h5>Shipping</h5>
+            </div>
+            <div class="row text-right float-right" style="margin-top:-2em; margin-right:1rem">
+                <span class="mb-2" >Free</span>
+            </div>
+            </div>
+            <br>
+
+           
+            <br>
+
+            <div class="">
+            <div class="rowa ">
+                <h5>You Pay</h5>
+            </div>
+            <div class="row text-right float-right" style="margin-top:-2em; margin-right:1rem">
+                <h6 class="mb-2">Rs :<span id="totala" >{{total}}</span></h6>
+                
+            </div>
+            </div>
+            <br>
+            
+            
+            <div class="row rowa text-right" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                
+                <h5 class="mb-2">Total Price : Rs  <span id="total" >{{total}}</span></h5>
+                
+            </div> 
+            <a href="/check-out" class="btn btna">CHECKOUT</a>
+            <a href="/" class=" btn btna">Countinue Shoping</a>
+        </div>
+        </div>
+        </div>
+</section>
+
+

@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="author" content="Yinka Enoch Adedokun" />
+      <title>confirm otp</title>
+    </head>
+    <body>
+      <!-- Main Content -->
+      <div class="container-fluid">
+        <div class="row main-content bg-success text-center">
+          <div class="col-md-4 text-center company__info">
+            <span class="company__logo"><h2><span
+                  class="fa fa-commenting-o fa-3x"
+                ></span></h2></span>
+            <h4 class="company_title">Enter Your OTP</h4>
+          </div>
+          <div class="col-md-8 col-xs-12 col-sm-12 login_form">
+            <div class="container-fluid">
+              <div class="row">
+                <h2>Enter OTP</h2>
+              </div>
+
+              <div class="row">
+
+                <form
+                  control=""
+                  class="form-group"
+                  action="/otp-confirm"
+                  method="post"
+                  id="Form"
+                >
+                 {{#if errOtp}}
+                <h5 style="color: crimson;">{{errOtp}}</h5>
+                {{/if}}
+
+                  <div class="row">
+                    <input
+                      type="text"
+                      name="otp"
+                      id="otp-Number"
+                      class="form__input"
+                      placeholder="Enter OTP"
+                    />
+                    <span id="errorNumber" style="color: crimson;"></span>
+                  </div>
+                 
+                  {{! <div class="row">
+								<input type="checkbox" name="remember_me" id="remember_me" class="">
+								<label for="remember_me">Remember Me!</label>
+							</div> }}
+                  <div class="row">
+                    <button type="submit" class="btn">Verify</button>
+                  </div>
+                  <div><span id="timer"></span></div>
+                  <div class="row">
+                    <p><a id="resent" href="/resend-otp"></a></p>
+                  </div>
+                </form>
+              </div>
+              
+            </div>
+          </div>
+
+         
+        </div>
+      </div>
+     
+<script src="javascript/admin-js/js.js"></script>
+    </body>
+  </div>
+</div>
+
+

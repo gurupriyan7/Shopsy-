@@ -1,0 +1,165 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+<style>
+    <style>
+  body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	background: #f4f4f4;
+}
+
+.list-wrapper {
+	padding: 15px;
+	overflow: hidden;
+}
+
+.list-item {
+	border: 1px solid #EEE;
+	background: #FFF;
+	margin-bottom: 10px;
+	padding: 10px;
+	box-shadow: 0px 0px 10px 0px #EEE;
+}
+
+.list-item h4 {
+	color: #FF7182;
+	font-size: 18px;
+	margin: 0 0 5px;	
+}
+
+.list-item p {
+	margin: 0;
+}
+
+.simple-pagination ul {
+	margin: 0 0 20px;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+
+.simple-pagination li {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.simple-pagination li a,
+.simple-pagination li span {
+	color: #666;
+	padding: 5px 10px;
+	text-decoration: none;
+	border: 1px solid #EEE;
+	background-color: #FFF;
+	box-shadow: 0px 0px 10px 0px #EEE;
+}
+
+.simple-pagination .current {
+	color: #FFF;
+	background-color: #FF7182;
+	border-color: #FF7182;
+}
+
+.simple-pagination .prev.current,
+.simple-pagination .next.current {
+	background: #e04e60;
+}
+</style>
+<section class="container" style="background-color:aliceblue; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);" >
+          <div class="col-md-12" style="border-radius: 10px;">
+                    <div class="row"  style="border-color: black; border-width: 2px;">
+<main class="main">
+            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">Your Orders<span></span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <div>
+        
+                <table class=" list-wrapper table">
+                    <thead class="thead-dark" style="style=" text-align: center;"">
+                        <tr>
+        
+                            <th scope="col">SL.NO</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Address</th>
+
+                            
+                            
+                            <th scope="col">Amount</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Option</th>
+                        </tr>
+                    </thead>
+                    <tbody class="">
+                        {{#each orders}}
+                        <tr class="list-item">
+                            <td>{{inc @index}}</td>
+                            <td>{{this.date}}</td>
+                            <td>{{this.deliveryDetails.name}}<br>
+                                {{this.deliveryDetails.houseName}}<br>
+                                {{this.deliveryDetails.city}}<br>
+                                {{this.deliveryDetails.pinCode}}<br>
+                            </td>
+                            
+                            
+                            <td>{{this.totalAmount}}</td>
+                            <td>{{this.paymentMethod}}</td>
+                            <td>{{this.status}}</td>
+                            <td hidden>{{this.oldTotal}}</td>
+                            {{#if this.cancel}}
+                             <td><a href="/view-order-products?id={{this._id}}"style="width:max-content;" class="btn view-product">View Products</a></td>
+
+                            {{else}}
+                            {{#if this.delivery}}
+                             <td><a  class=" btn" style="width:max-content;">Return</a>
+                            <a href="/view-order-products?id={{this._id}}"style="width:max-content;" class="btn view-product">View Products</a></td>
+                            {{else}}
+                           <td><button onclick="removeOrder('{{this._id}}','{{this.userId}}','{{this.paymentMethod}}','{{this.totalAmount}}' )" class=" btn" style="width:max-content;">Cancel</button>
+                            <a href="/view-order-products?id={{this._id}}"style="width:max-content;" class="btn view-product">View Products</a></td>
+                            {{/if}}
+                            {{/if}}
+
+                           
+                            
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                    <div id="pagination-container"></div>
+            </div>
+        </main> 
+                    </div>
+          </div>
+</section>
+<script>
+  // jQuery Plugin: http://flaviusmatis.github.io/simplePagination.js/
+
+var items = $(".list-wrapper .list-item");
+    var numItems = items.length;
+    var perPage = 9;
+
+    items.slice(perPage).hide();
+
+    $('#pagination-container').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "&laquo;",
+        nextText: "&raquo;",
+        onPageClick: function (pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    });
+</script>
+<style>
+    .view-product{
+        border-color: green;
+        color: green;
+    }
+    .view-product:hover{
+        background-color: green ;
+    }
+</style>

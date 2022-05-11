@@ -1,0 +1,222 @@
+/* cart */
+
+        /* .title{
+          margin-bottom: 5vh;
+          color:rgb(177, 10, 44) ;
+        
+        }
+        .title:hover{
+                color: rgb(240, 25, 68);
+        }
+        
+        
+        .card {
+         
+          max-width: 950px;
+          width: 1000%;
+          box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          border-radius: 1rem;
+          border: transparent
+        }
+        
+        @media(max-width:767px) {
+          .card {
+              margin: 3vh auto
+          }
+        }
+        
+        .carta {
+          background-color: #fff;
+          padding: 4vh 5vh;
+          
+        }
+        
+        @media(max-width:767px) {
+          .carta {
+              padding: 4vh;
+              
+          }
+        }
+        
+        
+        
+        .rowa {
+          margin: 0;
+         
+        }
+        
+        .title b {
+          font-size: 1.5rem
+        }
+        
+        .maina{
+          margin: 0;
+          padding: 2vh 0;
+          width: 100%
+        }
+        
+        .col-2,
+        .col {
+          padding: 0 1vh
+        }
+        
+        a {
+          padding: 0 1vh
+        }
+        
+        .closea {
+          margin-left: auto;
+          font-size: 0.7rem
+        }
+        
+        img {
+          width: 3.5rem
+        }
+        
+        .back-to-shopa {
+          margin-top: 4.5rem
+        }
+        
+        h5 {
+          margin-top: 4vh
+        }
+        
+        hr {
+          margin-top: 1.25rem;
+          height: 2rem;
+          
+        }
+        
+        form {
+          padding: 2vh 0
+        }
+        
+        select {
+          border: 1px solid rgba(0, 0, 0, 0.137);
+          padding: 1.5vh 1vh;
+          margin-bottom: 4vh;
+          outline: none;
+          width: 100%;
+          background-color: rgb(247, 247, 247)
+        }
+        
+        input {
+          border: 1px solid rgba(21, 196, 38, 0.137);
+          padding: 1vh;
+          margin-bottom: 4vh;
+          outline: none;
+          width: 100%;
+          font-size: smaller!important;
+          background-color: rgb(247, 247, 247)
+        }
+        
+        input:focus::-webkit-input-placeholder {
+          color: transparent;
+          font-size: small!important;
+        }
+        
+        .btna{
+          background-color: white;
+          border-color: #000;
+          border-width: 1px;
+          color: black;
+          width: 72%;
+          height: 36px;
+          margin-left: 66px;
+          font-size: 14px;
+          padding: 1vh;
+          border-radius: 20px;
+          
+      
+        }
+        .btna:hover{
+          background-color:red;
+        color: white;
+        }
+        
+        
+        
+        a {
+          color: black
+        }
+        
+        
+        
+        #codea {
+          background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+          background-repeat: no-repeat;
+          background-position-x: 95%;
+          background-position-y: center
+        }
+        .remove{
+          
+          background-color:white;
+          border-radius: 100px;
+          width: 29px;
+          color: rgb(19, 17, 17);
+          border-width: 0px;
+
+        }
+        .remove:hover{
+                background-color:red;
+                color: white!important;
+        }
+        .icon{
+                border-radius: 100px;
+                 width: 15px;
+          color: rgb(125, 11, 11);
+        }
+        .cart-item-count{
+          border-radius: 6px;
+          margin:2px;
+        }
+        .cart-item-count{
+          margin: 5px;
+          background-color: white;
+        }
+        .cart-item-count:hover{
+          background-color: red;
+        }
+        
+        .catagory-name{
+          font-size: 11px;
+        }
+        .product-name{
+          font-size: 12px;
+        }
+        .cart-right-card-list{
+          display: flex;
+        }
+        .main-row{
+          display: flex;
+          
+        }
+        .rowm{
+          max-width: 100%;
+        } */
+
+
+
+        .summarya {
+          background-color: #ddd;
+         
+          border-radius: 1rem;
+          padding: 4vh;
+          color: rgb(65, 65, 65);
+          height: fit-content;
+        }
+        
+        @media(max-width:767px) {
+          .summarya {
+              border-color: #000;
+              
+          }
+        }
+        
+        
+        
+        .summarya.col-10 {
+          padding: 0
+        }
+       
+        /* cart */

@@ -1,0 +1,256 @@
+{{!-- <h1 style='font-size:x-large'>DashBoard</h1> --}}
+
+<style>
+           #graph-card {
+                    
+                     border-radius: 5px ;
+       box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;
+}
+    }
+
+</style>
+<div class="container-fluid mt-5">
+    
+    
+          {{!-- <div class="text-center mb-2">
+                    <h3><strong>Sales Report</strong> <small> <strong>{{data.start}}--{{data.end}}</strong></small></h3>
+          </div>
+          <div class="text-left">
+        <div class="dropdown">
+  <a class="btn  dropdown-toggle" href="" style="border: 1px solid rgb(224, 176, 19); box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+    Select <i class="fa fa-caret-down" aria-hidden="true"></i>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="/admin/limit-report?limit=yearly"> Yearly</a>
+    <a class="dropdown-item" href="/admin/limit-report?limit=monthly">Monthly</a>
+    <a class="dropdown-item" href="/admin/limit-report?limit=weekly">Weekly</a>
+    
+  </div>
+</div>
+    </div> --}}
+          {{!-- <div class="row">
+                    <div class="col-md-12">
+                              <form action="/admin/date-report" method="post">
+                                        <div class="form-row">
+                                                  <div class="form-group col-md-4">
+                                                            <label for="start"><h6>From Date</h6></label>
+                                                            <input type="date" class="form-control" id="start"
+                                                                      name="startDate" style=" box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;border: 1px solid rgb(224, 176, 19);" required>
+                                                  </div>
+                                                  <div class="form-group col-md-4">
+                                                            <label for="end"><h6>To Date</h6></label>
+                                                            <input type="date" class="form-control" id="end"
+                                                                      name="endDate" style=" box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;border: 1px solid rgb(224, 176, 19);" required>
+                                                  </div>
+                                                  <div class="form-group col-md-4 mt-4">
+                                                            <input type="submit" value="Search"
+                                                                      class="btn btn-block  "
+                                                                      style="margin-top: 14px; background-color:rgb(224, 176, 19);color:white; box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.307)!important;">
+                                                  </div>
+                                        </div>
+                              </form>
+                    </div>
+          </div> --}}
+
+          <div class="row">
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                              <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                                  <div class="row no-gutters align-items-center">
+                                                            <div class="col mr-2">
+                                                                      <div
+                                                                                class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                                                Total sales Amount</div>
+                                                                      <div
+                                                                                class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                               Rs: {{data.totalSales}}</div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                      <i class="fa fa-inr fa-2x text-gray-300"></i>
+                                                            </div>
+                                                  </div>
+                                        </div>
+                              </div>
+                    </div>
+
+                    <!-- Earnings (Annual) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                              <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                                  <div class="row no-gutters align-items-center">
+                                                            <div class="col mr-2">
+                                                                      <div
+                                                                                class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                                Total Users</div>
+                                                                      <div
+                                                                                class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                                {{data.allUser}}</div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                      <i class="fa fa-users fa-2x text-gray-300"></i>
+                                                            </div>
+                                                  </div>
+                                        </div>
+                              </div>
+                    </div>
+
+                    <!-- Tasks Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                              <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                                  <div class="row no-gutters align-items-center">
+                                                            <div class="col mr-2">
+                                                                      <div
+                                                                                class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                                                Total Products
+                                                                      </div>
+                                                                      <div class="row no-gutters align-items-center">
+                                                                                <div class="col-auto">
+                                                                                          <div
+                                                                                                    class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                                                                    {{data.totalProducts}}</div>
+                                                                                </div>
+
+                                                                      </div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                      <i
+                                                                                class="fa fa-product-hunt fa-2x text-gray-300"></i>
+                                                            </div>
+                                                  </div>
+                                        </div>
+                              </div>
+                    </div>
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                              <div class="card border-left-warning shadow h-100 py-2">
+                                        <div class="card-body">
+                                                  <div class="row no-gutters align-items-center">
+                                                            <div class="col mr-2">
+                                                                      <div
+                                                                                class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                                                Total Orders</div>
+                                                                      <div
+                                                                                class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                                 {{data.totalOrders}}</div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                      <i class="fa fa-shopping-cart fa-2x text-gray-300"></i>
+                                                            </div>
+                                                  </div>
+                                        </div>
+                              </div>
+                    </div>
+          </div>
+</div>
+
+<div class="row">
+
+          {{!-- <div class="text-center mb-2">
+                    <h3>Sales <strong>Report</strong> <small> <strong>{{data.start}}-{{data.end}}</strong></small></h3>
+          </div> --}}
+
+
+          <div class="row ">
+                    <div class="col-md-8">
+                              <div id="graph-card" class="  mb-3 mt-3 ">
+                                        <div class="card-header">
+                                                  <i class="fa fa-shopping-cart f text-gray-300"></i>
+                                                  Oder Summary
+                                        </div>
+                                        <div class="card-body ">
+                                                  <div class="row">
+                                                            <canvas id="myChart" width="1000" height="412"></canvas>
+                                                  </div>
+                                        </div>
+                              </div>
+
+
+                    </div>
+                    <div class="col-md-4">
+
+                       <div id="graph-card" class="  mb-3 mt-3 ">
+                                        <div class="card-header">
+                                                  <i class="fa fa-inr f text-gray-300"></i>
+                                                  Payment Summary
+                                        </div>
+                                        <div class="card-body ">
+                                                  <div class="row">
+                                                            <canvas id="chart"></canvas>
+                                                  </div>
+                                        </div>
+                              </div>
+                              
+                    </div>
+
+          </div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+          integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+          const ctx = document.getElementById('myChart').getContext('2d');
+          const myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                              labels: ['Total Orders', ' Delivered','Placed','Shipped', 'Pending Orders','Cancel Orders'],
+                              datasets: [{
+                                        label: 'Order Summary',
+                                         data: [{{ data.totalOrders }}, {{ data.deliveredOrder }},{{data.placedOrders}},{{data.shippedOrders}},{{ data.faildOrders }},{{ data.cancelOrder}}],
+                                        
+          backgroundColor: [
+                   'rgb(255, 99, 132)',
+                      'rgb(54, 162, 235)',
+                      'rgb(255, 205, 86)',
+                      'rgb(75, 192, 192)',
+                      'rgb(999, 192, 192)',
+                      'rgb(155, 192, 192)',
+          ],
+                   
+                              
+        }]
+    },
+          options: {
+                    scales: {
+                              y: {
+                                        beginAtZero: true
+                              }
+                    }
+          }
+});
+
+          const data = {
+                    labels: [
+                              'Razorpay',
+                              'Paypal',
+                              'COD'
+                    ],
+                    datasets: [{
+                              label: 'My First Dataset',
+                              data: [{{data.razorpay}},{{data.paypal}},{{data.cod}}],
+                              backgroundColor: [
+                                        'rgb(255, 99, 132)',
+                                        'rgb(54, 162, 235)',
+                                        'rgb(255, 205, 86)'
+                              ],
+                              hoverOffset: 5
+                    }]
+          };
+          const config = {
+                    type: 'doughnut',
+                    data: data,
+          };
+
+          const chart = new Chart(
+                    document.getElementById('chart'),
+                    config
+          );
+</script>

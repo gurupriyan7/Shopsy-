@@ -1,0 +1,380 @@
+
+<section>
+          <!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container-fluid" style="background-color:rgb(255, 255, 255);padding-top:2rem;border-radius:9px">
+				<!-- row -->
+				<div class="row">
+                               <form method="" id="checkout-form">
+					<div class="row col-md-7">
+<div class="row">
+ {{#each allAddress}}
+  
+  <div class="col-sm-3" style="margin-left:3rem ;background-color:aliceblue; margin-top:3rem;border-radius:9px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title"><i  >Address :{{inc @index}}</i></h5>
+        <h5 class="card-text">{{this.name}}</h5>
+        <p class="card-text">{{this.houseName}},{{this.city}}</p>
+        <p class="card-text">PIN :{{this.pinCode}}</p>
+        <p class="card-text">+91-{{this.phoneNumber}}</p>
+        <a onclick="chooseAddress('{{this._id}}','{{this.name}}','{{this.houseName}}','{{this.pinCode}}','{{this.phoneNumber}}','{{this.city}}')" class=" btn" style="width: fit-content;">Choose</a>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  
+ 
+  
+ 
+ 
+</div>
+						<!-- Billing Details -->
+						<div class="billing-details col-md-11">
+							<div class="section-title">
+								<h3 class="title">Delivery address</h3>
+							</div>
+                                                                      
+							<div class="form-group">
+								<input class="input" type="text" id="name"   name="name"  placeholder="Name" >
+								<span style="color:crimson ; " id="nameErr"></span>
+							</div>
+							
+							
+							<div class="form-group">
+								<input class="input" type="text" id="houseName"  name="houseName" placeholder="houseName">
+							</div>		<span style="color:crimson ; " id="houseNameErr"></span>
+							<div class="form-group">
+								<input class="input" type="text" id="city"  name="city" placeholder="City">
+							</div>	<span style="color:crimson ; " id="cityErr"></span>
+							{{!-- <div class="form-group">
+								<input class="input" type="text" name="country" placeholder="Country">
+							</div> --}}
+							<div class="form-group">
+								<input class="input" type="text" id="pinCode"  name="pinCode" placeholder="Pin Code">
+							</div>	<span style="color:crimson ; " id="pinCodeErr"></span>
+							<div class="form-group">
+								<input class="input" type="tel" id="phoneNumber"  name="phoneNumber" placeholder="PhoneNumber">
+                                                                                <span style="color:crimson ; " id="phoneNumberErr"></span>
+								<input type="text" name="addId" id="id" value="" hidden>
+                                                                                <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+							</div>
+							
+						</div>
+						<!-- /Billing Details -->
+
+
+
+
+						
+					</div>
+                                                  
+
+					<!-- Order Details -->
+					<div class="col-md-5 order-details">
+						<div class="row">
+							<div class="col-md-6 text-center" style="border-radius:4px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);padding-bottom:5px">
+								<form action="post">
+                                                            <div>
+                                                            <label for="" class="material-icons text-info mr-2">Apply Coupon Get Discount</label>
+						<div style="" class="text-center">
+							<span><i class=" fa-fa-badge-percent" aria-hidden="true"></i></span><br>
+							<h5 id="success" style="color: green;"></h5>
+							<h5 id="err" style="color: red;"></h5>
+
+                                                            <input  type="text" id="couponCode" name="couponCode" placeholder="">
+						<input type="text" id="total" name="total" value="{{total}}" hidden>
+                                                            <button onclick="applyCoupon(event)" style=" border-radius:5px;" class="btn-danger">Apply</button>
+						</div>
+                                                            </div>
+                                                            </form>
+							</div>
+							<div class="col-md-6" style="border-radius:4px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);padding-bottom:11px">
+								<form action="" >
+                                                            <div class="text-center">
+                                                            <label for="" class="material-icons text-info mr-2">Your Wallet Amount</label>
+						<h5 id="success1" style="color: green;"></h5>
+							<h5 id="err1" style="color: red;"></h5>
+						<h6 class="material-icons text-info ">₹<span  id="userWallet">{{wallet}}</span></h6>
+						<div style="display:flex">
+
+                                                            <input style="margin-left:-24px;" value="{{wallet}}"  type="text" id="wallet" name="walletAmount" placeholder="" hidden>
+                                                            <input style="margin-left:-24px;"  type="text" id="applyWallet" name="walletAmount" placeholder="">
+						<a onclick="applyWallet()" style=" border-radius:5px;width:55px;margin-left:3px" class="btn-danger">Apply</a>
+
+						</div>
+                                                            </div>
+                                                            </form>
+							</div>
+							
+							
+						</div>
+                                                            
+						<div class="section-title text-center">
+							<h3 class="title">Pricing Table</h3>
+						</div>
+						<div class="order-summary">
+							
+							<div class="order-products">
+								<div class="order-col">
+									<div>Subtotal Price</div>
+									<div >Rs : <strong >{{total}}</strong></div>
+								</div>
+								
+							</div>
+							<div id="ysave" style="display:;"  class="order-col">
+								<div>You Pay</div>
+								<div>Rs :<strong id="price1">{{total}}</strong></div>
+							</div>
+							<div class="order-col">
+								<div><strong>TOTAL PRICE</strong></div>
+                                                                                
+								<div><strong class="order-total" id="">Rs :<span class="order-total" id="price">{{total}}</span></strong></div>
+                                                                                
+							</div>
+
+						</div>
+                                                                                <h4>Payment Method</h4>
+						<div class="payment-method">
+                                                                      
+							<div>
+
+                                            <label class="radio-inline">
+
+                                                <input type="radio" name="payment-method" value="COD" checked> COD
+
+                                            </label>
+
+                                            </div>
+
+                                            <div>
+
+                                             <label class="radio-inline">
+
+                                                <input type="radio" name="payment-method" value="razorPay" checked> RazorPay
+
+                                            </label>
+
+                                            </div>
+                                            <div>
+
+                                             <label class="radio-inline">
+
+                                                <input type="radio" name="payment-method" value="payPal" checked>Paypal
+
+                                            </label>
+
+                                            </div>
+
+ 
+                                                            
+				</div>
+						
+						{{!-- <a  type="submit" class=" btn primary-btn order-submit">Place order</a> --}}
+                                                            <button type="submit" onclick="validation(event)" class=" primary-btn order-submit">Place Order</button>
+                                                             {{!-- class="primary-btn order-submit" --}}
+					</div>
+					<!-- /Order Details -->
+                                                  </form>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION --> 
+                    
+</section>
+<script>
+
+let name=document.getElementById('name')
+let houseName=document.getElementById('houseName')
+let city=document.getElementById('city')
+let pinCode=document.getElementById('pinCode')
+let phoneNumber=document.getElementById('phoneNumber')
+
+let nameErr=document.getElementById('nameErr')
+let houseNameErr=document.getElementById('houseNameErr')
+let cityErr=document.getElementById('cityErr')
+let pinCodeErr=document.getElementById('pinCodeErr')
+let phoneNumberErr=document.getElementById('phoneNumberErr')
+
+let nameMsg=[]
+let houseMsg=[]
+let cityMsg=[]
+let pinMsg=[]
+let phoneMsg=[]
+
+
+function validation(e){
+	
+
+	if(name.value==null||name.value==""){
+		nameMsg.push('please enter Name')
+	}
+	if(houseName.value==null||houseName.value==""){
+		houseMsg.push('please enter HouseName')
+	}
+	if(city.value==null||city.value==""){
+		cityMsg.push("Please enter city Name")
+	}
+	if(pinCode.value==null||pinCode.value==""){
+		pinMsg.push('Please enter PinCode')
+	}else if(isNaN(pinCode.value)==true){
+
+		pinMsg.push('Incorrect Format')
+	}
+	if(phoneNumber.value==null||phoneNumber.value==""){
+		phoneMsg.push('please enter PhoneNumber')
+	}else if(phoneNumber.value.length<10||phoneNumber.value.length>10){
+		phoneMsg.push('Incorrect phoneNumber')
+          }else if(isNaN(phoneNumber.value)==true){
+		phoneMsg.push('Please enter in Number Format')
+	}
+
+
+
+	if(nameMsg.length>0){
+		e.preventDefault()
+		nameErr.innerHTML="";
+		nameErr.innerHTML=nameMsg.join('')
+	}
+	
+	if(houseMsg.length>0){
+		e.preventDefault()
+		houseNameErr.innerHTML=houseMsg.join('')
+	}
+	if(cityMsg.length>0){
+		e.preventDefault()
+		cityErr.innerHTML=cityMsg.join('')
+	}
+	if(pinMsg.length>0){
+		e.preventDefault()
+		pinCodeErr.innerHTML=pinMsg.join('')
+	}
+	if(phoneMsg.length>0){
+		e.preventDefault()
+		phoneNumberErr.innerHTML=phoneMsg.join('')
+	}
+}
+
+
+
+
+
+
+
+
+
+
+function applyWallet(){
+let walletAmount=document.getElementById('wallet').value
+let applyAmount=document.getElementById('applyWallet').value
+let userWallet=document.getElementById('userWallet')
+let price=document.getElementById('total').value
+
+if(applyAmount==''||applyAmount==null){
+	document.getElementById('err1').innerHTML='Enter Amount'
+}else{
+
+$.ajax({
+          url:'/apply-wallet',
+          data:{
+		walletBalance:walletAmount,
+		applyAmount:applyAmount,
+		total:price
+               
+          },
+          method:'post',
+          success:(response)=>{
+		if(response.noBalance){
+		document.getElementById('err1').innerHTML='Wallet has no sufficient balance'	
+		}
+		if(response.success){
+			document.getElementById('success1').innerHTML='wallet Amount Applied'
+			newWallet=walletAmount-applyAmount
+			userWallet.innerHTML=newWallet
+
+
+			newPrice=price-applyAmount
+			document.getElementById('price1').innerHTML=parseInt(newPrice)
+			document.getElementById('price').innerHTML=parseInt(newPrice)
+			document.getElementById('total').value=parseInt(newPrice)
+		}
+	}
+
+  })
+}
+
+
+
+
+	}
+		
+
+	function chooseAddress(addId,name,houseName,pin,phoneNumber,city){
+
+		document.getElementById('name').value=name;
+		document.getElementById('houseName').value=houseName;
+		document.getElementById('city').value=city;
+		document.getElementById('pinCode').value=pin;
+		document.getElementById('phoneNumber').value=phoneNumber;
+		document.getElementById('id').value=addId;
+
+		
+}
+
+function applyCoupon(event){
+	
+    event.preventDefault();
+      let total=document.getElementById('total').value;
+      let couponCode=document.getElementById('couponCode').value;
+     let err=document.getElementById('err')
+     let success=document.getElementById('success')
+     if(couponCode==''||couponCode==null){
+	     err.innerHTML='Enter the Code'
+     }else{
+
+	 $.ajax({
+          url:'/apply-coupon',
+          data:{
+              total:total,
+              couponCode:couponCode
+          },
+          method:'post',
+          success:(response)=>{
+		if(response.couponSuccess){
+
+			 
+			success.innerHTML='coupon Applyed Successfully'
+			document.getElementById('price').innerHTML=response.total;
+			document.getElementById('price1').innerHTML=response.total;
+			document.getElementById('total').value=response.total;
+			let save=response.oldTotal-response.total;
+			
+
+
+		}
+		if(response.couponUsed){
+			err.innerHTML='You Alredy used The Coupon'
+		}
+		if(response.couponExpired){
+			err.innerHTML='Coupon Expired'
+		}
+		if(response.invalidCoupon){
+
+			err.innerHTML='Invalid Coupon'
+		}
+		
+		
+                
+          }
+      })     
+     }
+
+     
+  }
+
+  
+</script>
+
