@@ -431,8 +431,8 @@ router.post("/place-order", verifyLogin, async (req, res) => {
             payment_method: "paypal",
           },
           redirect_urls: {
-            return_url: "http://shopsy.club/success",
-            cancel_url: "http://shopsy.club/cancel",
+            return_url: "https://shopsy.club/success",
+            cancel_url: "https://shopsy.club/cancel",
           },
           transactions: [
             {
