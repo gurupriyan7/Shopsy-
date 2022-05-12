@@ -431,8 +431,8 @@ router.post("/place-order", verifyLogin, async (req, res) => {
             payment_method: "paypal",
           },
           redirect_urls: {
-            return_url: "http://localhost:3000/success",
-            cancel_url: "http://localhost:3000/cancel",
+            return_url: "http://shopsy.club/success",
+            cancel_url: "http://shopsy.club/cancel",
           },
           transactions: [
             {
@@ -551,7 +551,7 @@ router.get("/profile", verifyLogin, async (req, res) => {
     userHelpers.userFind(user._id).then((user1) => {
       let refer = user1.refer;
       let wallet = user1.wallet;
-      let referalLink = "http://localhost:3000/signup?refer=" + refer;
+      let referalLink = "https://shopsy.club/signup?refer=" + refer;
 
       res.render("users/profile", {
         user,
