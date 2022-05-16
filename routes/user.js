@@ -678,7 +678,7 @@ router.get("/view-order-products", verifyLogin, async (req, res) => {
       user: req.session.user,
       products,
       wishCount,
-    });
+    });  
   });
 });
 // payment-verification
