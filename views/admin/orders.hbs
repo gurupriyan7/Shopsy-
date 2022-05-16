@@ -92,8 +92,8 @@
       <th scope="col">Date</th>
       <th scope="col">User</th>
  <th scope="col">Address</th>
- <th>Actual Amount(₹)</th>
- <th>Discount(₹)</th>
+ {{!-- <th>Actual Amount(₹)</th>
+ <th>Discount(₹)</th> --}}
  <th>Pay Amount(₹)</th>
  <th scope="col">Payment</th>
  <th scope="col">Status</th>
@@ -112,7 +112,7 @@
           {{this.deliveryDetails.city}}<br>
           {{this.deliveryDetails.pinCode}}<br>
       </td>
-      <td>{{this.oldTotal}}</td>
+      {{!-- <td>{{this.oldTotal}}</td>
                               {{#if CandW}}
                             <td>Wallet:  <span style="font-size:14px;">{{this.walletDiscount}}</span><br>
                             Coupon:<span style="font-size:14px;">{{this.couponDiscount}}</span></td>
@@ -128,7 +128,7 @@
                             {{#if noOffer}}
                             <td>No offers</td>
                             {{/if}}
-                            {{/if}}
+                            {{/if}} --}}
                             <td>{{this.totalAmount}}</td>
       <td>
                 
