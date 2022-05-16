@@ -89,6 +89,7 @@
                             <th scope="col">Amount</th>
                             <th scope="col">Payment</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Discount</th>
                             <th scope="col">Option</th>
                         </tr>
                     </thead>
@@ -101,6 +102,7 @@
                                 {{this.deliveryDetails.houseName}}<br>
                                 {{this.deliveryDetails.city}}<br>
                                 {{this.deliveryDetails.pinCode}}<br>
+                                
                             </td>
                             
                             
@@ -108,6 +110,24 @@
                             <td>{{this.paymentMethod}}</td>
                             <td>{{this.status}}</td>
                             <td hidden>{{this.oldTotal}}</td>
+                            {{#if CandW}}
+                            <td>Wallet: Rs <span style="font-size:14px;">{{this.walletDiscount}}</span><br>
+                            Coupon:Rs <span style="font-size:14px;">{{this.couponDiscount}}</span></td>
+
+                            {{else}}
+                            {{#if this.walletStatus}}
+                            <td>Wallet Discount: Rs <span style="font-size:14px;">{{this.walletDiscount}}</span></td><br>
+                            {{/if}}
+
+                            {{#if this.couponStatus}}
+                            <td>Coupon Discount: Rs <span style="font-size:14px;">{{this.couponDiscount}}</span></td>
+                            {{/if}}
+                            {{#if noOffer}}
+                            <td>NO offers Applied</td>
+                            {{/if}}
+                            {{/if}}
+
+
                             {{#if this.cancel}}
                              <td><a href="/view-order-products?id={{this._id}}"style="width:max-content;" class="btn view-product">View Products</a></td>
 

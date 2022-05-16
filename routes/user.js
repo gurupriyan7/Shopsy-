@@ -395,20 +395,35 @@ router.post("/place-order", verifyLogin, async (req, res) => {
   let products = await userHelpers.getCartProductList(req.body.userId);
   let totalPrice = await userHelpers.getTotalAmount(req.body.userId);
   let totalAmount = totalPrice;
+  let coupon=false;
+  let wallet=false;
+  let couponDiscount=0;
+  let walletDiscount=0;
 
   if (req.session?.couponTotal && req.session?.walletAmount) {
     totalAmount = req.session.walletAmount;
+    coupon=true
+    wallet=true
+    couponDiscount=totalPrice-req.session.couponTotal;
+    walletDiscount=totalPrice-req.session.walletAmount;
+
   } else {
     if (req.session?.couponTotal) {
       totalAmount = req.session.couponTotal;
+      coupon=true
+      couponDiscount=totalPrice-req.session.couponTotal;
     }
     if (req.session?.walletAmount) {
       totalAmount = req.session.walletAmount;
+      wallet=true
+      console.log('a',totalPrice);
+      console.log('b',req.session.walletAmount)
+      walletDiscount=totalPrice-req.session.walletAmount;
     }
   }
 
   userHelpers
-    .placeOrder(req.body, products, totalAmount, totalPrice)
+    .placeOrder(req.body, products, totalAmount, totalPrice,coupon,wallet,couponDiscount,walletDiscount)
     .then((orderId) => {
       req.session.orderId = orderId;
 

@@ -1,215 +1,219 @@
-
 <style>
-    #searchResult {
-        max-width: 400px;
-        width: 64%;
-        margin: 5px auto 0 auto;
-        position: absolute;
-        border-radius: 8px;
-        border-color:transparent;
-        
-        background-color:white;
-        z-index: 3;
+	#searchResult {
+		max-width: 400px;
+		width: 64%;
+		margin: 5px auto 0 auto;
+		position: absolute;
+		border-radius: 8px;
+		border-color: transparent;
 
-    }
+		background-color: white;
+		z-index: 3;
+
+	}
 </style>
-		<!-- HEADER -->
-		<header>
-			
+<!-- HEADER -->
+<header>
 
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container-fluid">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-2 ">
-							<div class="header-logo">
-								<a href="/" class="logo">
-                                                                                          SHOPSY
-								</a>
-							</div>
-						</div>
-						<!-- /LOGO -->
 
-						<!-- SEARCH BAR -->
-						
-						<div class="col-md-5 ">
-							<div class="header-search">
-								{{#if search}}
-								<form>
-									{{!-- <select class="input-select">
-										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-									</select> --}}
-									<input class="input search-nav" onkeyup="sendData(this)" placeholder="Search here">
-									<button onclick="click(event)"  class="search-btn search-bttn" >Search</button>
-									<ul class="list-group list-group-flush">
-                                                                                          <li class="" id="searchResult"></li>
-
-                                                                                           </ul>
-								</form>
-								{{/if}}
-							</div>
-						</div>
-						<!-- /SEARCH BAR -->
-						
-
-						<!-- ACCOUNT -->
-						<div class="col-md-5 clearfix">
-							<div class="header-ctn">
-								<!-- Wishlist -->
-								<div>
-									<a href="/wishList">
-										<i class="fa fa-heart-o"></i>
-										<span>Wishlist</span>
-										{{#if wishCount}}
-										<div id="wish-count" class="qty">{{wishCount}}</div>
-										{{/if}}
-									</a>
-								</div>
-								<!-- /Wishlist -->
-
-								<!-- Cart -->
-								
-								<div class="dropdown">
-									<a href="/cart" aria-expanded="true">
-										
-										<i class="fa fa-shopping-cart"></i>
-										<span >Cart</span>
-
-										{{#if cartCount}}
-										
-										<span id="cart-count" class="qty">{{cartCount}}</span>
-										{{/if}}
-										
-									</a>
-									
-									
-								</div>
-								
-								<!-- /Cart -->
-								{{!-- order --}}
-								<div class="dropdown">
-									<a href="/orders" aria-expanded="true">
-										
-										<i class="fa fa-shopping-bag"></i>
-										<span >Orders</span>
-										
-										
-										
-									</a>
-									
-									
-								</div>
-								{{!-- order --}}
-
-								{{#if user}}
-                                                                                {{!-- profile --}}
-                                                                                <div>
-									<a href="/profile">
-										<i class="fa fa-user"></i>
-										<span>{{user.Name}}</span>
-									</a>
-								</div>
-                                                                                {{!-- /profile --}}
-								{{else}}
-								 <div>
-									<a href="">
-										<i class="fa fa-user"></i>
-										<span>My Account</span>
-									</a>
-								</div>
-								{{/if}}
-                                                                                {{!-- log --}}
-                                                                                <div>
-									<a href="/logout">
-										<i class="fa fa-sign-out"></i>
-										<span>logout</span>
-										
-									</a>
-								</div>
-                                                                                {{!-- /log --}}
-
-								<!-- Menu Toogle -->
-								<div class="menu-toggle">
-									<a href="#">
-										<i class="fa fa-bars"></i>
-										<span>Menu</span>
-									</a>
-								</div>
-								<!-- /Menu Toogle -->
-							</div>
-						</div>
-						<!-- /ACCOUNT -->
+	<!-- MAIN HEADER -->
+	<div id="header">
+		<!-- container -->
+		<div class="container-fluid">
+			<!-- row -->
+			<div class="row">
+				<!-- LOGO -->
+				<div class="col-md-2 ">
+					<div class="header-logo">
+						<a style="color: rgb(197, 8, 8) !important;" href="/"
+							class="logo">
+							SHOPSY
+						</a>
 					</div>
-					<!-- row -->
 				</div>
-				<!-- container -->
-			</div>
-			<!-- /MAIN HEADER -->
-		</header>
-		<!-- /HEADER -->
+				<!-- /LOGO -->
 
-		<!-- NAVIGATION -->
-		<nav id="navigation">
-			<!-- container -->
-			<div class="container">
-				<!-- responsive-nav -->  
-				<div id="responsive-nav">
-					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						{{#each data}}
-						<li ><a href="/catagory-manegment?cat={{this._id}}">{{this.Catagory}}</a></li>
-						{{/each}}
-					</ul>
-					<!-- /NAV -->
+				<!-- SEARCH BAR -->
+
+				<div class="col-md-5 ">
+					<div class="header-search">
+						{{#if search}}
+						<form>
+							{{!-- <select class="input-select">
+								<option value="0">All Categories
+								</option>
+								<option value="1">Category 01</option>
+								<option value="1">Category 02</option>
+							</select> --}}
+							<input class="input search-nav"
+								onkeyup="sendData(this)"
+								placeholder="Search here">
+							<button onclick="click(event)"
+								class="search-btn search-bttn">Search</button>
+							<ul class="list-group list-group-flush">
+								<li class="" id="searchResult"></li>
+
+							</ul>
+						</form>
+						{{/if}}
+					</div>
 				</div>
-				<!-- /responsive-nav -->
+				<!-- /SEARCH BAR -->
+
+
+				<!-- ACCOUNT -->
+				<div class="col-md-5 clearfix">
+					<div class="header-ctn">
+						<!-- Wishlist -->
+						<div>
+							<a href="/wishList">
+								<i class="fa fa-heart-o"></i>
+								<span>Wishlist</span>
+								{{#if wishCount}}
+								<div id="wish-count" class="qty">
+									{{wishCount}}</div>
+								{{/if}}
+							</a>
+						</div>
+						<!-- /Wishlist -->
+
+						<!-- Cart -->
+
+						<div class="dropdown">
+							<a href="/cart" aria-expanded="true">
+
+								<i class="fa fa-shopping-cart"></i>
+								<span>Cart</span>
+
+								{{#if cartCount}}
+
+								<span id="cart-count"
+									class="qty">{{cartCount}}</span>
+								{{/if}}
+
+							</a>
+
+
+						</div>
+
+						<!-- /Cart -->
+						{{!-- order --}}
+						<div class="dropdown">
+							<a href="/orders" aria-expanded="true">
+
+								<i class="fa fa-shopping-bag"></i>
+								<span>Orders</span>
+
+
+
+							</a>
+
+
+						</div>
+						{{!-- order --}}
+
+						{{#if user}}
+						{{!-- profile --}}
+						<div>
+							<a href="/profile">
+								<i class="fa fa-user"></i>
+								<span>{{user.Name}}</span>
+							</a>
+						</div>
+						{{!-- /profile --}}
+						{{else}}
+						<div>
+							<a href="">
+								<i class="fa fa-user"></i>
+								<span>My Account</span>
+							</a>
+						</div>
+						{{/if}}
+						{{!-- log --}}
+						<div>
+							<a href="/logout">
+								<i class="fa fa-sign-out"></i>
+								<span>logout</span>
+
+							</a>
+						</div>
+						{{!-- /log --}}
+
+						<!-- Menu Toogle -->
+						<div class="menu-toggle">
+							<a href="#">
+								<i class="fa fa-bars"></i>
+								<span>Menu</span>
+							</a>
+						</div>
+						<!-- /Menu Toogle -->
+					</div>
+				</div>
+				<!-- /ACCOUNT -->
 			</div>
-			<!-- /container -->
-		</nav>
-		<!-- /NAVIGATION -->
-		
+			<!-- row -->
+		</div>
+		<!-- container -->
+	</div>
+	<!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER -->
 
-		<script>
+<!-- NAVIGATION -->
+<nav id="navigation">
+	<!-- container -->
+	<div class="container">
+		<!-- responsive-nav -->
+		<div id="responsive-nav">
+			<!-- NAV -->
+			<ul class="main-nav nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				{{#each data}}
+				<li><a href="/catagory-manegment?cat={{this._id}}">{{this.Catagory}}</a></li>
 
-    function sendData(e) {
-        const searchResult = document.getElementById('searchResult');
-        let match = e.value.match(/^[a-zA-Z ]*/)
-        let match2 = e.value.match(/\s*/);
-        if (match2[0] == e.value) {
-            searchResult.innerHTML = "";
-            return;
-        }
-        if (match[0] == e.value) {
-            fetch('search', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ payload: e.value })
+				{{/each}}
+			</ul>
+			<!-- /NAV -->
+		</div>
+		<!-- /responsive-nav -->
+	</div>
+	<!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
 
-            }).then(res => res.json()).then(data => {
-                let payload = data.payload;
-                searchResult.innerHTML = ''
-                if (payload.legth < 1) {
-                    searchResult.innerHTML = '<p>sorry. nothing found.</p>'
-                    return;
-                }
-                payload.forEach((item, index) => {
-                    if (index > 0) searchResult.innerHTML += '<hr>';
-                    searchResult.innerHTML += `<a href="/image-view?id=${item._id}">${item.Description}</a>`
-                });
-            });
-            return;
-        }
-        searchResult.innerHTML = '';
 
-    }
-    
+<script>
+
+	function sendData(e) {
+		const searchResult = document.getElementById('searchResult');
+		let match = e.value.match(/^[a-zA-Z ]*/)
+		let match2 = e.value.match(/\s*/);
+		if (match2[0] == e.value) {
+			searchResult.innerHTML = "";
+			return;
+		}
+		if (match[0] == e.value) {
+			fetch('search', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ payload: e.value })
+
+			}).then(res => res.json()).then(data => {
+				let payload = data.payload;
+				searchResult.innerHTML = ''
+				if (payload.legth < 1) {
+					searchResult.innerHTML = '<p>sorry. nothing found.</p>'
+					return;
+				}
+				payload.forEach((item, index) => {
+					if (index > 0) searchResult.innerHTML += '<hr>';
+					searchResult.innerHTML += `<a href="/image-view?id=${item._id}">${item.Description}</a>`
+				});
+			});
+			return;
+		}
+		searchResult.innerHTML = '';
+
+	}
+
 </script>
-
-		
-		
-		

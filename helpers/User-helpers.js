@@ -531,15 +531,31 @@ module.exports = {
     });
   },
   // place-order
-  placeOrder: (order, products, total,totalPrice) => {
+  placeOrder: (order, products, total,totalPrice,coupon,wallet,couponDiscount,walletDiscount) => {
     return new Promise((resolve, reject) => {
      
       var dat = new Date().toISOString();
       var dates = moment(dat).format("YYYY/MM/DD");
 
       let status = order["payment-method"] === "COD" ? "placed" : "pending";
+      let cStatus=false;
+      let wStatus=false;
+      let noOffer=false;
+      let CandW=false;
       
-      
+      if(coupon){
+       cStatus=true
+
+      }
+      if(wallet){
+        wStatus=true
+      }
+      if(!coupon&&!wallet){
+        noOffer=true;
+      }
+      if(wallet&&coupon){
+        CandW=true
+      }
       
       let orderObj = {
         deliveryDetails: {
@@ -548,6 +564,9 @@ module.exports = {
           pinCode: order.pinCode,
           city: order.city,
           name: order.name,
+          
+          
+
         },
         userId: ObjectId(order.userId),
         paymentMethod: order["payment-method"],
@@ -558,7 +577,14 @@ module.exports = {
         cancel: false,
         delivery: false,
         date: dates,
+        couponStatus:cStatus,
+          walletStatus:wStatus,
+          couponDiscount:couponDiscount,
+          walletDiscount:walletDiscount,
+          noOffer:noOffer,
+          CandW:CandW
       };
+      console.log('this is:',orderObj);
       db.get()
         .collection(collection.ORDER_COLLECTION)
         .insertOne(orderObj)
