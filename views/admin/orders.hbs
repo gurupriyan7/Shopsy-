@@ -92,6 +92,9 @@
       <th scope="col">Date</th>
       <th scope="col">User</th>
  <th scope="col">Address</th>
+ {{!-- <th>Actual Amount(₹)</th>
+ <th>Discount(₹)</th> --}}
+ <th>Pay Amount(₹)</th>
  <th scope="col">Payment</th>
  <th scope="col">Status</th>
  
@@ -104,13 +107,31 @@
       <td>{{this.date}}</td>
       <td>{{this.deliveryDetails.name}}</td>
       <td>
-          {{this.deliveryDetails.name}}<br>
+       
           {{this.deliveryDetails.houseName}}<br>
           {{this.deliveryDetails.city}}<br>
           {{this.deliveryDetails.pinCode}}<br>
       </td>
+      {{!-- <td>{{this.oldTotal}}</td>
+                              {{#if CandW}}
+                            <td>Wallet:  <span style="font-size:14px;">{{this.walletDiscount}}</span><br>
+                            Coupon:<span style="font-size:14px;">{{this.couponDiscount}}</span></td>
+
+                            {{else}}
+                            {{#if this.walletStatus}}
+                            <td>Wallet:<span style="font-size:14px;">{{this.walletDiscount}}</span></td><br>
+                            {{/if}}
+
+                            {{#if this.couponStatus}}
+                            <td>Coupon: <span style="font-size:14px;">{{this.couponDiscount}}</span></td>
+                            {{/if}}
+                            {{#if noOffer}}
+                            <td>No offers</td>
+                            {{/if}}
+                            {{/if}} --}}
+                            <td>{{this.totalAmount}}</td>
       <td>
-                Rs :{{this.totalAmount}}<br>
+                
       <h6>{{this.paymentMethod}}</h6>
           
       </td>

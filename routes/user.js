@@ -366,7 +366,7 @@ router.get("/check-out", verifyLogin, async (req, res) => {
     let wishCount = await userHelpers.getWishCount(req.session.user._id);
     let User = await userHelpers.findUserWallet(user._id);
     wallet = User.wallet;
-    res.render("users/check-out", {
+    res.render("users/check-out",{
       total,
       data,
       user,
@@ -385,7 +385,7 @@ router.post("/place-order", verifyLogin, async (req, res) => {
     userHelpers.addAddress(req.body.userId, req.body);
   }
 
-  if (req.session?.couponId) {
+  if (req.session?.couponId){
     userHelpers.couponAddressAdd(req.body.userId, req.session.couponId);
   }
   if (req.session?.walletApply) {
@@ -404,21 +404,27 @@ router.post("/place-order", verifyLogin, async (req, res) => {
     totalAmount = req.session.walletAmount;
     coupon=true
     wallet=true
-    couponDiscount=totalPrice-req.session.couponTotal;
-    walletDiscount=totalPrice-req.session.walletAmount;
+    walletDiscount=req.session.walletApply;
+    couponDiscount= req.session.couponApply;
+    console.log("two");
+   
 
   } else {
     if (req.session?.couponTotal) {
       totalAmount = req.session.couponTotal;
-      coupon=true
-      couponDiscount=totalPrice-req.session.couponTotal;
+      coupon=true;
+      wallet=false;
+      
+      couponDiscount= req.session.couponApply;
+      console.log('coupon');
     }
     if (req.session?.walletAmount) {
       totalAmount = req.session.walletAmount;
-      wallet=true
-      console.log('a',totalPrice);
-      console.log('b',req.session.walletAmount)
-      walletDiscount=totalPrice-req.session.walletAmount;
+      wallet=true;
+      coupon=false;
+      walletDiscount=req.session.walletApply;
+      console.log('wallet');
+    
     }
   }
 
@@ -494,6 +500,9 @@ router.post("/place-order", verifyLogin, async (req, res) => {
         });
       }
     });
+    req.session.walletAmount=null;
+    req.session.couponTotal=null;
+   
 });
 
 router.get("/success", (req, res) => {
@@ -753,9 +762,12 @@ router.post("/apply-coupon", verifyLogin, (req, res) => {
   userHelpers
     .couponValidate(req.body, req.session.user._id)
     .then((response) => {
+      
       if (response.success) {
+        req.session.couponApply=response.oldTotal-response.total;
         req.session.couponTotal = response.total;
         req.session.couponId = response.couponId;
+        console.log("haaaa",req.session.couponTotal)
 
         res.json({
           couponSuccess: true,

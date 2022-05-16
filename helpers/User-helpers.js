@@ -543,19 +543,26 @@ module.exports = {
       let noOffer=false;
       let CandW=false;
       
+      if(wallet&&coupon){
+        CandW=true
+        console.log('this',walletDiscount,couponDiscount)
+      }else{
+
+      
       if(coupon){
        cStatus=true
 
       }
       if(wallet){
         wStatus=true
+        console.log('wallerr',walletDiscount);
       }
+    
       if(!coupon&&!wallet){
         noOffer=true;
       }
-      if(wallet&&coupon){
-        CandW=true
-      }
+    }
+     
       
       let orderObj = {
         deliveryDetails: {
@@ -565,8 +572,6 @@ module.exports = {
           city: order.city,
           name: order.name,
           
-          
-
         },
         userId: ObjectId(order.userId),
         paymentMethod: order["payment-method"],
