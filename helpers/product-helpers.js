@@ -65,11 +65,7 @@ module.exports = {
           getProductDetails:(prodId)=>{
             return new Promise((resolve,reject)=>{
              db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(prodId)}).then((product)=>{
-=======
-  addProduct: (catName, product, callback) => {
->>>>>>> f9916b7112548f0c9d8414b09edf0166b181de5b
-
-    db.get()
+       db.get()
       .collection(collection.PRODUCT_COLLECTION)
       .insertOne({
         Title: product.Title,
@@ -82,7 +78,9 @@ module.exports = {
       .then((data) => {
         callback(data.insertedId);
       });
-  },
+  })
+})
+          },
   // get-all-products
   getAllProducts: () => {
     return new Promise(async (resolve, reject) => {
@@ -141,185 +139,9 @@ module.exports = {
             CatagoryName: catName.Catagory,
             date: moment(new Date()).format('YYYY/MM/DD')
 
-          }
-<<<<<<< HEAD
-          
-          
-}
-=======
-        }).then((response) => {
-          resolve(response)
-        })
-    })
-  },
-  // delete-category
-  deleteCatagory: (proId) => {
-    return new Promise((resolve, reject) => {
-      db.get().collection(collection.CATAGORY_COLLECTION).deleteOne({ _id: objectId(proId) }).then((response) => {
-        resolve(response)
-
-      })
-    })
-  },
-  // find-product
-  findProduct: (proId) => {
-    return new Promise(async (resolve, reject) => {
-      let product = await db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: objectId(proId) })
-      resolve(product)
-
-    })
-  },
-  // find-category
-  findCatagoryName: (catId) => {
-    return new Promise((resolve, reject) => {
-      db.get().collection(collection.CATAGORY_COLLECTION).findOne({ _id: objectId(catId) }).then((response) => {
-        resolve(response)
-
-      })
-    })
-  },
-  // get-ordered-products
-  findOrderProducts: (ordrId) => {
-    return new Promise(async (resolve, reject) => {
-      let orderProducts = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
-        {
-          $match: {
-            _id: objectId(ordrId)
-          }
-        },
-        {
-          $unwind: "$products"
-        },
-        {
-          $project: {
-            item: "$products.item",
-            quantity: "$products.quantity"
-          }
-        },
-        {
-          $lookup: {
-            from: collection.PRODUCT_COLLECTION,
-            localField: 'item',
-            foreignField: '_id',
-            as: 'products'
-          }
-        },
-        {
-          $project: {
-            item: 1, quantity: 1, products: { $arrayElemAt: ['$products', 0] }
-          }
-        }
-      ]).toArray()
-
-      resolve(orderProducts)
-    })
-  },
-  // update-wishlist
-  wishUpdate: (userId, prodId) => {
-
-    return new Promise(async (resolve, reject) => {
-      let proObj = {
-        userId: objectId(userId)
-      }
-      let product = await db.get().collection(collection.PRODUCT_COLLECTION).find({ _id: objectId(prodId) }).toArray()
-
-      if (product[0].wishUser) {
-
-        db.get().collection(collection.PRODUCT_COLLECTION)
-          .updateOne({ _id: objectId(prodId) },
-            {
-              $push: { wishUser: proObj }
-            }).then((response) => {
-              resolve(response)
-            })
-      } else {
-
-        db.get().collection(collection.PRODUCT_COLLECTION)
-          .updateOne({ _id: objectId(prodId) },
-            {
-              $set: {
-                wishUser: [proObj]
-              }
-            }).then((response) => {
-              resolve(response)
-            })
-      }
-    })
-  },
-
-  wishExist: (userId) => {
-    return new Promise(async (resolve, reject) => {
-      db.get().collection(collection.PRODUCT_COLLECTION)
-        .updateMany({ 'wishUser.userId': objectId(userId) },
-          {
-            $set: {
-              wishList: true
-            }
-          }).then((response) => {
-            resolve(response)
-          })
-      db.get().collection(collection.PRODUCT_COLLECTION)
-        .updateMany({ 'wishUser.userId': { $ne: objectId(userId) } },
-          {
-            $set: {
-              wishList: false
-            }
-          }).then((response) => {
-
-            resolve(response)
-          })
-
-
-
-    })
-  },
-  wishTrue: (userId, prodId) => {
-    return new Promise((resolve, reject) => {
-      db.get().collection(collection.PRODUCT_COLLECTION)
-        .updateOne({ 'wishUser.userId': objectId(userId) },
-          {
-            $set: {
-              wishList: true
-            }
-          }).then((response) => {
-            resolve(response)
-          })
-    })
-  },
-  wishClean: (userId) => {
-    return new Promise((resolve, reject) => {
-      db.get().collection(collection.PRODUCT_COLLECTION)
-        .updateMany({},
-          {
-            $set: {
-              wishList: false
-            }
-          }).then((response) => {
-            resolve(response)
-          })
-    })
-  },
-  removeWish: (userId, proId) => {
-    return new Promise((resolve, reject) => {
-      db.get().collection(collection.PRODUCT_COLLECTION)
-        .updateOne({ 'wishUser.userId': objectId(userId) },
-          {
-            $set: {
-              wishList: false
-            }
-          }).then((response) => {
-            resolve(response)
-          })
-      db.get().collection(collection.PRODUCT_COLLECTION)
-        .updateOne({ _id: objectId(proId) },
-          {
-            $pull: { wishUser: { userId: objectId(userId) } }
-          }).then((response) => {
-            resolve(response)
-          })
+          }        
+})
     })
   }
-
-
 }
->>>>>>> f9916b7112548f0c9d8414b09edf0166b181de5b
+  
