@@ -86,6 +86,7 @@ router.post("/product-add", verifyLogin, (req, res) => {
         let image = req.files.image1;
         image.mv("./public/product-images/" + id + ".jpg")
       }
+      
       // image-2
       if (req.files?.image2) {
         let image2 = req.files.image2;
@@ -103,7 +104,7 @@ router.post("/product-add", verifyLogin, (req, res) => {
       }
       res.redirect("/admin/product-view");
     });
-
+ 
 
   })
   
@@ -295,7 +296,9 @@ router.get('/limit-report',verifyLogin,(req,res)=>{
     startDate=moment(endDate).subtract(7,'days').format('YYYY/MM/DD')
   }
   adminHelpers.dateReport(startDate,endDate).then((data)=>{
-    res.render('admin/report',{admin:true,data})
+    adminHelpers.dateOrders(startDate,endDate).then((orders)=>{
+    res.render('admin/report',{admin:true,data,orders})
+    })
   })
   
 

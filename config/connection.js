@@ -5,8 +5,8 @@ const state = {
 };
 
 module.exports.connect = (done) => {
-  // const url = 'mongodb+srv://gurupriyan:ULupmsO4l1IYQZum@cluster0.vi3jx.mongodb.net/shopsy?retryWrites=true&w=majority';
-  const url = process.env.DB_URL;
+  const url = 'mongodb+srv://gurupriyan:ULupmsO4l1IYQZum@cluster0.vi3jx.mongodb.net/shopsy?retryWrites=true&w=majority';
+  // const url = process.env.DB_URL;
   const dbname = "shopsy";
 
   mongoClient.connect(url, (err, data) => {
@@ -18,4 +18,4 @@ module.exports.connect = (done) => {
 
 module.exports.get = function () {
   return state.db;
-};
+};  

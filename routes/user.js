@@ -593,6 +593,7 @@ router.get("/profile", verifyLogin, async (req, res) => {
 router.post("/edit-profile", verifyLogin, (req, res) => {
   let user = req.session.user;
   let newUser = req.body.Name;
+  
 
   userHelpers.editProfile(user._id, req.body).then((response) => {
 

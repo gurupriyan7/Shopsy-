@@ -485,6 +485,16 @@ startCouponOffers:(date)=>{
 
 
 },
+dateOrders:(startDate,endDate)=>{
+  let end= moment(endDate).format('YYYY/MM/DD')
+  let start=moment(startDate).format('YYYY/MM/DD')
+  return new Promise(async(resolve,reject)=>{
+    let orders=await db.get().collection(collection.ORDER_COLLECTION).find({date:{$gte:start,$lte:end}}).sort({$natural:-1}).toArray()
+          
+           
+    resolve(orders)
+  })
+}
 
           
 }
