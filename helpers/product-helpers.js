@@ -9,7 +9,6 @@ var objectId = require('mongodb').ObjectId
 module.exports = {
 
   // add-product
-<<<<<<< HEAD
            addProduct: (catName,product, callback)=>{
                    
                     db.get()
