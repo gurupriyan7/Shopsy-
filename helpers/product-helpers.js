@@ -61,7 +61,7 @@ module.exports = {
               })
             })
           },
-          // get-one-product-details
+ // get-one-product-details
           getProductDetails:(prodId)=>{
             return new Promise((resolve,reject)=>{
              db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(prodId)}).then((product)=>{

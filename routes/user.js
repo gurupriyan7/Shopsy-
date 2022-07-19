@@ -273,6 +273,7 @@ router.get("/resend-otp", (req, res) => {
 // product-image-view
 router.get("/image-view", (req, res) => {
   let id = req.query.id;
+  console.log("got it",id)
   if (req.session?.user) {
     productHelpers.getAllCatagorys().then((data) => {
       productHelpers.findProduct(id).then(async (product) => {
