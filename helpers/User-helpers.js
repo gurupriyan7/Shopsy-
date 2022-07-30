@@ -792,7 +792,7 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       const crypto = require("crypto");
-      let hmac = crypto.createHmac("sha256", "HBrlZ2Eb0Ewma4t3TZVWQqnW");
+      let hmac = crypto.createHmac(process.env.KEY_ID, process.env.SECRET);
 
       hmac.update(
         details["payment[razorpay_order_id]"] +

@@ -2,9 +2,6 @@ function userUnblock (event){
           var link=event.currentTarget.href;
           var name=event.currentTarget.name;
           event.preventDefault();
-          
-             
-          
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't to Unblock!"+" "+name,
